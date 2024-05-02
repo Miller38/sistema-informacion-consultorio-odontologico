@@ -1,4 +1,4 @@
-<img align="right" src="http://visitor-badge.laobi.icu/badge?page_id=Miller38.prototipo-aplicacion-web" />
+<img align="right" src="http://visitor-badge.laobi.icu/badge?page_id=Miller38.sistema-informacion-consultorio" />
 
 <h3>Sistema Informacion Consultorio Odontologico Maria Jose Velez G</h3>
 
