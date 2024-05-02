@@ -1,0 +1,25 @@
+<img align="right" src="http://visitor-badge.laobi.icu/badge?page_id=Miller38.prototipo-aplicacion-web" />
+
+<h3>Sistema Informacion Consultorio Odontologico Maria Jose Velez G</h3>
+
+![Preview 1](preview1.jpg)
+
+![Preview 2](preview2.jpg)
+
+## Tecnologías Utilizadas
+
+- NetBeans
+- Git
+- Github
+- Java
+
+<img src="https://skillicons.dev/icons?i=vscode,html,java,git,github" /> <br/>
+
+<h3>link Repositorio Github</h3>
+https://github.com/Miller38/sistema-informacion-consultorio
+
+## Créditos.
+## Designed by Milliany Tech ®2024
+Yuliet Faizuli Pachon Caro - 
+Nestor Fabian Gutierrez Sabogal - 
+Jorge Miller Gutierrez Ospina
