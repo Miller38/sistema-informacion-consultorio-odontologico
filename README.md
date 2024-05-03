@@ -8,12 +8,13 @@
 
 ## Tecnologías Utilizadas
 
+- Vscode
 - NetBeans
 - Git
 - Github
 - Java
 
-<img src="https://skillicons.dev/icons?i=vscode,html,java,git,github" /> <br/>
+<img src="https://skillicons.dev/icons?i=vscode,java,git,github" /> <br/>
 
 <h3>link Repositorio Github</h3>
 https://github.com/Miller38/sistema-informacion-consultorio
