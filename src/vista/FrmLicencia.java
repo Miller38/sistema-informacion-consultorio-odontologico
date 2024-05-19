@@ -87,11 +87,11 @@ public class FrmLicencia extends JFrame implements ActionListener, ChangeListene
     // Metodo para los eventos de los botones
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == boton1){
-            Main main =new Main();
-            main.setBounds(0,0,900,600);
-            main.setVisible(true);
-            main.setResizable(false);
-            main.setLocationRelativeTo(null);
+            Menu menu =new Menu();
+            menu.setBounds(0,0,996,541);
+            menu.setVisible(true);
+            menu.setResizable(false);
+            menu.setLocationRelativeTo(null);
             this.setVisible(false);
         }
          if(e.getSource() == boton2){

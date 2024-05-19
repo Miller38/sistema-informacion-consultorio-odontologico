@@ -43,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel_Historial = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jPanel_Reportes = new javax.swing.JPanel();
+        jPanel_cerrar_sesion = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel_Citas = new javax.swing.JPanel();
@@ -55,6 +55,9 @@ public class Menu extends javax.swing.JFrame {
         jPanel_Usuarios = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jPanel_Reportes = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -65,10 +68,10 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel4.setBackground(new java.awt.Color(58, 65, 66));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel_Home.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel_Home.setBackground(new java.awt.Color(58, 65, 66));
         jPanel_Home.setForeground(new java.awt.Color(255, 255, 255));
         jPanel_Home.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -90,9 +93,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setText("Home");
         jPanel_Home.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 20));
 
-        jPanel4.add(jPanel_Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 170, -1));
+        jPanel4.add(jPanel_Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, -1));
 
-        jPanel_Agenda.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel_Agenda.setBackground(new java.awt.Color(58, 65, 66));
         jPanel_Agenda.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jPanel_AgendaMouseMoved(evt);
@@ -111,11 +114,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Agenda");
-        jPanel_Agenda.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 90, -1));
+        jPanel_Agenda.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 90, -1));
 
-        jPanel4.add(jPanel_Agenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 170, -1));
+        jPanel4.add(jPanel_Agenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 170, -1));
 
-        jPanel_Historial.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel_Historial.setBackground(new java.awt.Color(58, 65, 66));
         jPanel_Historial.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jPanel_HistorialMouseMoved(evt);
@@ -136,32 +139,32 @@ public class Menu extends javax.swing.JFrame {
         jLabel7.setText("Historial");
         jPanel_Historial.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 80, 30));
 
-        jPanel4.add(jPanel_Historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 170, -1));
+        jPanel4.add(jPanel_Historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 170, -1));
 
-        jPanel_Reportes.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel_Reportes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        jPanel_cerrar_sesion.setBackground(new java.awt.Color(58, 65, 66));
+        jPanel_cerrar_sesion.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jPanel_ReportesMouseMoved(evt);
+                jPanel_cerrar_sesionMouseMoved(evt);
             }
         });
-        jPanel_Reportes.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel_cerrar_sesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel_ReportesMouseExited(evt);
+                jPanel_cerrar_sesionMouseExited(evt);
             }
         });
-        jPanel_Reportes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel_cerrar_sesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Reportes");
-        jPanel_Reportes.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, 80, 20));
+        jLabel8.setText("Cerrar sesion");
+        jPanel_cerrar_sesion.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 5, 110, 20));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/profile-user.png"))); // NOI18N
-        jPanel_Reportes.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 40));
+        jPanel_cerrar_sesion.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 40));
 
-        jPanel4.add(jPanel_Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 170, -1));
+        jPanel4.add(jPanel_cerrar_sesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 170, -1));
 
-        jPanel_Citas.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel_Citas.setBackground(new java.awt.Color(58, 65, 66));
         jPanel_Citas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jPanel_CitasMouseMoved(evt);
@@ -182,9 +185,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel11.setText("Citas");
         jPanel_Citas.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 20));
 
-        jPanel4.add(jPanel_Citas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 170, -1));
+        jPanel4.add(jPanel_Citas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 170, -1));
 
-        jPanel_Pacientes.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel_Pacientes.setBackground(new java.awt.Color(58, 65, 66));
         jPanel_Pacientes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jPanel_PacientesMouseMoved(evt);
@@ -205,9 +208,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel13.setText("Pacientes");
         jPanel_Pacientes.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 20));
 
-        jPanel4.add(jPanel_Pacientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 170, -1));
+        jPanel4.add(jPanel_Pacientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 170, -1));
 
-        jPanel_Usuarios.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel_Usuarios.setBackground(new java.awt.Color(58, 65, 66));
         jPanel_Usuarios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jPanel_UsuariosMouseMoved(evt);
@@ -228,13 +231,36 @@ public class Menu extends javax.swing.JFrame {
         jLabel15.setText("Usuarios");
         jPanel_Usuarios.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 20));
 
-        jPanel4.add(jPanel_Usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 170, -1));
+        jPanel4.add(jPanel_Usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 170, -1));
+
+        jPanel_Reportes.setBackground(new java.awt.Color(58, 65, 66));
+        jPanel_Reportes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel_ReportesMouseMoved(evt);
+            }
+        });
+        jPanel_Reportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel_ReportesMouseExited(evt);
+            }
+        });
+        jPanel_Reportes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Reportes");
+        jPanel_Reportes.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, 80, 20));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/profile-user.png"))); // NOI18N
+        jPanel_Reportes.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 40));
+
+        jPanel4.add(jPanel_Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 170, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 540));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 540));
 
-        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel2.setBackground(new java.awt.Color(58, 65, 66));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -259,7 +285,7 @@ public class Menu extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 810, 60));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 760, 480));
 
@@ -283,7 +309,7 @@ public class Menu extends javax.swing.JFrame {
  */
     private void jPanel_HomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_HomeMouseExited
        // Restaura el color de fondo del panel a azul claro.
-        jPanel_Home.setBackground(new Color(51,153,255)); 
+        jPanel_Home.setBackground(new Color(58,65,66)); 
     }//GEN-LAST:event_jPanel_HomeMouseExited
 
     private void jPanel_AgendaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_AgendaMouseMoved
@@ -291,7 +317,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_AgendaMouseMoved
 
     private void jPanel_AgendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_AgendaMouseExited
-        jPanel_Agenda.setBackground(new Color(51,153,255));
+        jPanel_Agenda.setBackground(new Color(58,65,66));
     }//GEN-LAST:event_jPanel_AgendaMouseExited
 
     private void jPanel_HistorialMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_HistorialMouseMoved
@@ -299,23 +325,23 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_HistorialMouseMoved
 
     private void jPanel_HistorialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_HistorialMouseExited
-         jPanel_Historial.setBackground(new Color(51,153,255));
+         jPanel_Historial.setBackground(new Color(58,65,66));
     }//GEN-LAST:event_jPanel_HistorialMouseExited
 
-    private void jPanel_ReportesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_ReportesMouseMoved
-         jPanel_Reportes.setBackground(new Color(204,204,204));
-    }//GEN-LAST:event_jPanel_ReportesMouseMoved
+    private void jPanel_cerrar_sesionMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_cerrar_sesionMouseMoved
+         jPanel_cerrar_sesion.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_jPanel_cerrar_sesionMouseMoved
 
-    private void jPanel_ReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_ReportesMouseExited
-         jPanel_Reportes.setBackground(new Color(51,153,255));
-    }//GEN-LAST:event_jPanel_ReportesMouseExited
+    private void jPanel_cerrar_sesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_cerrar_sesionMouseExited
+         jPanel_cerrar_sesion.setBackground(new Color(58,65,66));
+    }//GEN-LAST:event_jPanel_cerrar_sesionMouseExited
 
     private void jPanel_CitasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_CitasMouseMoved
          jPanel_Citas.setBackground(new Color(204,204,204));
     }//GEN-LAST:event_jPanel_CitasMouseMoved
 
     private void jPanel_CitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_CitasMouseExited
-         jPanel_Citas.setBackground(new Color(51,153,255));
+         jPanel_Citas.setBackground(new Color(58,65,66));
     }//GEN-LAST:event_jPanel_CitasMouseExited
 
     private void jPanel_PacientesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_PacientesMouseMoved
@@ -323,7 +349,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_PacientesMouseMoved
 
     private void jPanel_PacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_PacientesMouseExited
-         jPanel_Pacientes.setBackground(new Color(51,153,255));
+         jPanel_Pacientes.setBackground(new Color(58,65,66));
     }//GEN-LAST:event_jPanel_PacientesMouseExited
 
     private void jPanel_UsuariosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_UsuariosMouseMoved
@@ -331,8 +357,17 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_UsuariosMouseMoved
 
     private void jPanel_UsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_UsuariosMouseExited
-         jPanel_Usuarios.setBackground(new Color(51,153,255));
+         jPanel_Usuarios.setBackground(new Color(58,65,66));
     }//GEN-LAST:event_jPanel_UsuariosMouseExited
+
+    private void jPanel_ReportesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_ReportesMouseMoved
+         jPanel_Reportes.setBackground(new Color(204,204,204));
+       
+    }//GEN-LAST:event_jPanel_ReportesMouseMoved
+
+    private void jPanel_ReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_ReportesMouseExited
+         jPanel_Reportes.setBackground(new Color(58,65,66));
+    }//GEN-LAST:event_jPanel_ReportesMouseExited
 
     /**
      * @param args the command line arguments
@@ -384,6 +419,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -403,5 +440,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_Pacientes;
     private javax.swing.JPanel jPanel_Reportes;
     private javax.swing.JPanel jPanel_Usuarios;
+    private javax.swing.JPanel jPanel_cerrar_sesion;
     // End of variables declaration//GEN-END:variables
 }
