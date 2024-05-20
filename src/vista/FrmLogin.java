@@ -1,4 +1,3 @@
-
 package vista;
 
 import controlador.Ctrl_Usuario;
@@ -12,8 +11,7 @@ import modelo.Usuario;
  * @author Miller
  */
 public class FrmLogin extends javax.swing.JFrame {
-    
-   
+
     public FrmLogin() {
         this.setUndecorated(true);
         initComponents();
@@ -27,20 +25,18 @@ public class FrmLogin extends javax.swing.JFrame {
         // Titulo del jFrame
         this.setTitle("Login");
         // Medidas del jFrame
-        this.setSize(700,500);
+        this.setSize(700, 500);
         // Permite que el jFrame aparezca en el centro
         this.setLocationRelativeTo(null);
-        
+
     }
-    
+
 //      // Objeto para agregar  icono JOptionPane 
 //    public Icon icono (String path, int width, int heigth){
 //        Icon img = new ImageIcon(new ImageIcon(getClass().getResource(path)).getImage()
 //            .getScaledInstance(width, heigth,java.awt.Image.SCALE_SMOOTH));
 //        return  img;
 //    }
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -161,27 +157,20 @@ public class FrmLogin extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -214,37 +203,36 @@ public class FrmLogin extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // Metodo para loguearse
-    private void login(){
-        
-        if(!txt_usuario.getText().isEmpty()  && !txt_password.getText().isEmpty()){
-            
+    private void login() {
+
+        if (!txt_usuario.getText().isEmpty() && !txt_password.getText().isEmpty()) {
+
             Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
             Usuario usuario = new Usuario();
             usuario.setUsuario(txt_usuario.getText().trim());
             usuario.setPassword(txt_password.getText().trim());
-           
-            
-            if(controlUsuario.loginUser(usuario)){
-                
+
+            if (controlUsuario.loginUser(usuario)) {
+
                 //JOptionPane.showMessageDialog(null, "Login correcto");
-                FrmLicencia licencia = new FrmLicencia();
-                licencia.setBounds(0,0,610,370);
-                licencia.setVisible(true);
-                licencia.setResizable(false);
-                licencia.setLocationRelativeTo(null);
+                Menu menu = new Menu();
+                menu.setBounds(0, 0, 996, 541);
+                menu.setVisible(true);
+                menu.setResizable(false);
+                menu.setLocationRelativeTo(null);
+                this.setVisible(false);
                 dispose();
-                
-            }else{
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Usuario o clave incorrectos");
 //                JOptionPane.showMessageDialog(null, "<html><p style=\"color:red;font-size:12px;\">Usuario o clave incorrectos." +"</p></html>",
 //                        "advertencia", JOptionPane.PLAIN_MESSAGE, icono("/img/DS.png", 40 ,40));
 
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese sus credenciales");
         }
     }
 
-     
 }
