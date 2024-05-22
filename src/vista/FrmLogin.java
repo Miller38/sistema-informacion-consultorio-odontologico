@@ -216,7 +216,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
                 //JOptionPane.showMessageDialog(null, "Login correcto");
                 Menu menu = new Menu();
-                menu.setBounds(0, 0, 996, 541);
+                menu.setBounds(0, 0, 1200, 700);
                 menu.setVisible(true);
                 menu.setResizable(false);
                 menu.setLocationRelativeTo(null);
