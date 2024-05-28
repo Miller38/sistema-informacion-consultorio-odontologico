@@ -16,7 +16,10 @@ public class Usuario {
     public String usuario; // Nombre de usuario para iniciar sesión
     private String password; // Contraseña del usuario
     private String telefono; // Número de teléfono del usuario
+    private String email;
+    private String registrado_por;
     private int estado; // Estado del usuario (activo, inactivo, etc.)
+    
 
     
     // Constructor
@@ -29,6 +32,8 @@ public class Usuario {
         this.usuario = "";
         this.password = "";
         this.telefono = "";
+        this.email = "";
+        this.registrado_por = "";
         this.estado = 0;
         
     }
@@ -84,10 +89,28 @@ public class Usuario {
     public String getTelefono() {
         return telefono;
     }
-
-    public void setTelefono(String telefono) {
+    
+      public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRegistrado_por() {
+        return registrado_por;
+    }
+
+    public void setRegistrado_por(String registrado_por) {
+        this.registrado_por = registrado_por;
+    }
+    
+    
 
     // Métodos para acceder y modificar el estado del usuario
     public int getEstado() {

@@ -1,20 +1,20 @@
 
 package vista;
 
-// Este código importa la clase Color del paquete java.awt
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.JDesktopPane;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 
 /**
  *
  * @author Miller
  */
 public class Menu extends javax.swing.JFrame {
-    
-   // Declara un objeto estático de tipo JDesktopPane que será utilizado para contener otros componentes internos (ventanas internas).
-//public static JDesktopPane jDesktopPane_menu;
-
+   
 /**
  * Creates new form Menu
  */
@@ -31,22 +31,43 @@ public Menu() {
     // Hace visible la ventana, permitiendo que sea visible para el usuario.
     this.setVisible(true);
     // Establece el título de la ventana.
-    this.setTitle("menu");
+    this.setTitle("Menu");
     // Establece el diseño de la ventana como nulo, permitiendo una disposición personalizada de los componentes.
     this.setLayout(null);
-    // Crea una nueva instancia de JDesktopPane.
-   /* jDesktopPane_menu = new JDesktopPane();
     
-    // Obtiene el ancho de la pantalla del dispositivo.
-    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    // Obtiene el alto de la pantalla del dispositivo.
-    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-    // Establece los límites del jDesktopPane_menu, incluyendo su posición y tamaño.
-    this.jDesktopPane_menu.setBounds(0, 0, ancho, (alto - 110));
-    // Agrega el jDesktopPane_menu al contenedor de la ventana.
-    this.add(jDesktopPane_menu);
-*/
+   // ----------------------------------------Colocar imagen de fondo----------------------------------------------// 
+ /*
+   // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
+ImageIcon wallpaper = new ImageIcon("src/img/fondo2.jpg");
+// Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
+// Obtiene la imagen del ImageIcon
+Icon icono = new ImageIcon(
+    wallpaper.getImage().getScaledInstance( // Escala la imagen
+        jLabel_Wallpaper.getWidth(),        // Ancho actual del jLabel_Wallpaper
+        jLabel_Wallpaper.getHeight(),       // Alto actual del jLabel_Wallpaper
+        Image.SCALE_DEFAULT                 // Algoritmo de escalado (por defecto)
+    )
+);
+// Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
+jLabel_Wallpaper.setIcon(icono);
+// Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
+this.repaint();
+ */
     }
+   
+  //------------------------------------ Cambiamos el icono del Jframe ------------------------------------------//
+ 
+@Override
+public Image getIconImage() {
+    // Utiliza Toolkit para obtener la imagen desde el recurso especificado
+    Image retValue = Toolkit.getDefaultToolkit().getImage(
+        // Ruta del recurso de la imagen dentro del classpath
+        ClassLoader.getSystemResource("img/logo.png")
+    );
+    // Devuelve la imagen obtenida
+    return retValue;
+}
+
 
     
     @SuppressWarnings("unchecked")
@@ -64,8 +85,10 @@ public Menu() {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -91,7 +114,7 @@ public Menu() {
                 Btn_usuariosActionPerformed(evt);
             }
         });
-        jPanel4.add(Btn_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 170, 40));
+        jPanel4.add(Btn_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 170, 30));
 
         Btn_cerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar-sesion.png"))); // NOI18N
         Btn_cerrarSesion.setText("       Cerrar Sesion");
@@ -110,7 +133,7 @@ public Menu() {
                 Btn_cerrarSesionActionPerformed(evt);
             }
         });
-        jPanel4.add(Btn_cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 170, 40));
+        jPanel4.add(Btn_cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 600, 150, 30));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrito.png"))); // NOI18N
         jButton3.setText("     usuario");
@@ -124,7 +147,7 @@ public Menu() {
                 jButton3MouseExited(evt);
             }
         });
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 170, 40));
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 170, 30));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrito.png"))); // NOI18N
         jButton4.setText("     usuario");
@@ -138,7 +161,7 @@ public Menu() {
                 jButton4MouseExited(evt);
             }
         });
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 170, 40));
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 170, 30));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrito.png"))); // NOI18N
         jButton5.setText("     usuario");
@@ -152,7 +175,7 @@ public Menu() {
                 jButton5MouseExited(evt);
             }
         });
-        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 170, 40));
+        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 170, 30));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrito.png"))); // NOI18N
         jButton6.setText("     usuario");
@@ -166,14 +189,14 @@ public Menu() {
                 jButton6MouseExited(evt);
             }
         });
-        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 170, 40));
+        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 170, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(78, 84));
         jLabel1.setMinimumSize(new java.awt.Dimension(78, 84));
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 190, 190));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 700));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 700));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, -1));
 
@@ -202,6 +225,10 @@ public Menu() {
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 960, 60));
+
+        jLabel_Wallpaper.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel_Wallpaper.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 55, 970, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,16 +284,17 @@ public Menu() {
     private void Btn_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_usuariosActionPerformed
         FrmNuevoUsuario frmNuevoUsuario = new  FrmNuevoUsuario();
         frmNuevoUsuario.setVisible(true);
-         frmNuevoUsuario.setSize(500, 400);
+         frmNuevoUsuario.setSize(600, 450);
          // Mover la ventana a una nueva posición (x, y)
-         frmNuevoUsuario.setLocation(600, 200); // Nueva posición: 500 píxeles desde la izquierda y 200 píxeles desde la parte superior
+         frmNuevoUsuario.setLocation(550, 200); // Nueva posición: 500 píxeles desde la izquierda y 200 píxeles desde la parte superior
          frmNuevoUsuario.setDefaultCloseOperation( frmNuevoUsuario.DISPOSE_ON_CLOSE);
+        
     }//GEN-LAST:event_Btn_usuariosActionPerformed
 
     private void Btn_cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarSesionActionPerformed
         FrmLogin frmLogin = new FrmLogin();
         frmLogin.setVisible(true);
-        frmLogin.setDefaultCloseOperation( frmLogin.DISPOSE_ON_CLOSE);
+       dispose();
     }//GEN-LAST:event_Btn_cerrarSesionActionPerformed
 
     /**
@@ -320,6 +348,7 @@ public Menu() {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;

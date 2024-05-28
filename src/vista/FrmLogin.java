@@ -31,12 +31,6 @@ public class FrmLogin extends javax.swing.JFrame {
 
     }
 
-//      // Objeto para agregar  icono JOptionPane 
-//    public Icon icono (String path, int width, int heigth){
-//        Icon img = new ImageIcon(new ImageIcon(getClass().getResource(path)).getImage()
-//            .getScaledInstance(width, heigth,java.awt.Image.SCALE_SMOOTH));
-//        return  img;
-//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -225,14 +219,20 @@ public class FrmLogin extends javax.swing.JFrame {
 
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario o clave incorrectos");
-//                JOptionPane.showMessageDialog(null, "<html><p style=\"color:red;font-size:12px;\">Usuario o clave incorrectos." +"</p></html>",
-//                        "advertencia", JOptionPane.PLAIN_MESSAGE, icono("/img/DS.png", 40 ,40));
-
+                Limpiar();
             }
 
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese sus credenciales");
         }
+    }
+    
+    // -------------------------------- Metodo para limpiar los campos -----------------------------------------------//
+     private void Limpiar() {
+        // Limpia el campo de texto para el usuario, estableciéndolo como una cadena vacía.
+        txt_usuario.setText("");
+        // Limpia el campo de texto para la contraseña, estableciéndolo como una cadena vacía.
+        txt_password.setText("");
     }
 
 }

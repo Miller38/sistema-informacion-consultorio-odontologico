@@ -1,6 +1,5 @@
 package controlador;
 
-import com.mysql.jdbc.Statement;
 import modelo.Usuario; // Importa la clase Usuario del paquete modelo
 import conexion.Conexion; // Importa la clase Conexion del paquete conexion
 import java.sql.Connection; // Importa la clase Connection de java.sql
@@ -17,7 +16,7 @@ import java.util.logging.Logger; // Importa la clase Logger de java.util.logging
  * @author Miller
  */
 public class Ctrl_Usuario {
- 
+    
     /*
     * ------------------------------------------------------------------------------------------------------------------------
     *                                                     Método para guardar un nuevo usuario.
@@ -32,9 +31,9 @@ public class Ctrl_Usuario {
 
     try {
         // Verifica si el usuario ya existe en la base de datos.
-        if (!existeUsuario(objeto.getUsuario())) {
+        
             // Prepara la consulta SQL para insertar un nuevo usuario en la tabla 'usuarios'.
-            PreparedStatement consulta = cn.prepareStatement("INSERT INTO usuarios VALUES (?, ?, ?)");
+            PreparedStatement consulta = cn.prepareStatement("INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?)");
         
             // Establece los valores de los parámetros en la consulta SQL.
             // El primer parámetro es un ID auto-generado, por lo que se establece como 0.
@@ -43,30 +42,26 @@ public class Ctrl_Usuario {
             consulta.setString(2, objeto.getUsuario());
             // El tercer parámetro es la contraseña del usuario.
             consulta.setString(3, objeto.getPassword());
+            
+            consulta.setString(4,objeto.getNombre());
+            
+            consulta.setString(5,objeto.getApellido());
+            
+            consulta.setString(6,objeto.getTelefono());
+            
+            consulta.setString(7,objeto.getEmail());
+            
+            consulta.setString(8,objeto.getRegistrado_por());
 
             // Ejecuta la consulta y verifica si se ha insertado al menos una fila.
             if (consulta.executeUpdate() > 0) {
                 // Si se ha insertado una fila, la respuesta es true.
                 respuesta = true;
             }
-        } else {
-            // Si el usuario ya existe, imprime un mensaje.
-            System.out.println("El usuario ya existe en la base de datos.");
-        }
+            cn.close();     
     } catch (SQLException e) {
-        // Manejo de excepciones: imprime el error en la consola.
-        System.out.println("Error al guardar el usuario: " + e);
-    } finally {
-        try {
-            // Cierra la conexión a la base de datos si no es nula.
-            if (cn != null && !cn.isClosed()) {
-                cn.close();
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al cerrar la conexión: " + e.getMessage());
-        }
+    System.out.println("Error al guardar el usuario " + e);
     }
-    // Retorna la respuesta: true si el usuario se ha guardado con éxito, false si no.
     return respuesta;
 }
 
@@ -135,6 +130,7 @@ public boolean existeUsuario(String usuario) {
             // Si ocurre una SQLException, se registra el error y se muestra un mensaje de error.
             Logger.getLogger(Ctrl_Usuario.class.getName()).log(Level.SEVERE, null, e);
             JOptionPane.showMessageDialog(null, "Error al iniciar sesión. Por favor, inténtelo de nuevo.");
+           
         }
         return respuesta; // Retorna el resultado del inicio de sesión.
     }
