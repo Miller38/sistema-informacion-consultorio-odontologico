@@ -31,7 +31,7 @@ public class SplashScreen extends javax.swing.JFrame {
         
         initComponents();
         
-         // 30% de opacidad del jframe
+         //30% de opacidad del jframe
         //setOpacity(0.5f);
 
         
@@ -46,11 +46,27 @@ public class SplashScreen extends javax.swing.JFrame {
         setVisible(true);
         // Permite que el jFrame aparezca en el centro
         setLocationRelativeTo(null);
-        setTitle("SplashScreen.");
-        
+        setTitle("SplashScreen.");        
         
          // Redondear las esquinas del jframe 
         setShape(new RoundRectangle2D.Double(0,0,getWidth(), getHeight(), 20,20));
+        
+           // ----------------------------------------Colocar imagen de fondo----------------------------------------------// 
+        // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
+        ImageIcon wallpaper = new ImageIcon("src/img/bg-gradiente.jpg");
+       // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
+       // Obtiene la imagen del ImageIcon
+        Icon icono = new ImageIcon(
+                wallpaper.getImage().getScaledInstance( // Escala la imagen
+                        jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
+                        jLabel_Wallpaper.getHeight(), // Alto actual del jLabel_Wallpaper
+                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
+                )
+        );
+        // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
+        jLabel_Wallpaper.setIcon(icono);
+       // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
+        this.repaint();
 
     }
 
@@ -66,6 +82,7 @@ public class SplashScreen extends javax.swing.JFrame {
         LoadingValue = new javax.swing.JLabel();
         BackgroundImage1 = new javax.swing.JLabel();
         LoadingLabel = new javax.swing.JLabel();
+        jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -98,6 +115,7 @@ public class SplashScreen extends javax.swing.JFrame {
         LoadingLabel.setForeground(new java.awt.Color(0, 0, 0));
         LoadingLabel.setText("Loading . . .");
         BackgroundPanel.add(LoadingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+        BackgroundPanel.add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,5 +219,6 @@ public class SplashScreen extends javax.swing.JFrame {
     private javax.swing.JLabel LoadingValue;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel_Wallpaper;
     // End of variables declaration//GEN-END:variables
 }

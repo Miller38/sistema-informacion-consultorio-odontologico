@@ -1,14 +1,23 @@
 package vista;
 
 import controlador.Ctrl_Usuario;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import modelo.Usuario;
 
 /**
  *
- * @author Miller
+ * @author Milliany Tech
+ * @version: 0.1
+ * @Date 2 enero - 2024
+ * @Name Sistema de informacion 
+ * 
  */
 public class FrmLogin extends javax.swing.JFrame {
 
@@ -24,11 +33,30 @@ public class FrmLogin extends javax.swing.JFrame {
         this.setVisible(true);
         // Titulo del jFrame
         this.setTitle("Login");
+        // Centra el jFrame
+        this.setLocationRelativeTo(null);
         // Medidas del jFrame
         this.setSize(700, 500);
         // Permite que el jFrame aparezca en el centro
-        this.setLocationRelativeTo(null);
-
+       // this.setLocationRelativeTo(null);
+       
+         // ----------------------------------------Colocar imagen de fondo----------------------------------------------// 
+        // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
+        ImageIcon wallpaper = new ImageIcon("src/img/bg-gradiente.jpg");
+       // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
+       // Obtiene la imagen del ImageIcon
+        Icon icono = new ImageIcon(
+                wallpaper.getImage().getScaledInstance( // Escala la imagen
+                        jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
+                        jLabel_Wallpaper.getHeight(), // Alto actual del jLabel_Wallpaper
+                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
+                )
+        );
+        // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
+        jLabel_Wallpaper.setIcon(icono);
+       // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
+        this.repaint();
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -39,6 +67,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel_Wallpaper = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -50,7 +79,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        Btn_cerrarLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,6 +100,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText(" Designed by Milliany Tech 2024");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+        jPanel1.add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 500));
 
@@ -79,7 +109,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 200, 180));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user2.png"))); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
@@ -128,10 +158,14 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 160, 2));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel9.setText("x");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 20, 20));
+        Btn_cerrarLogin.setBackground(new java.awt.Color(51, 153, 255));
+        Btn_cerrarLogin.setText("X");
+        Btn_cerrarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_cerrarLoginActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Btn_cerrarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 350, 500));
 
@@ -141,6 +175,11 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btn_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IniciarSesionActionPerformed
         this.login();
     }//GEN-LAST:event_btn_IniciarSesionActionPerformed
+
+    private void Btn_cerrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarLoginActionPerformed
+         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        dispose();
+    }//GEN-LAST:event_Btn_cerrarLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +217,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_cerrarLogin;
     private javax.swing.JButton btn_IniciarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -187,7 +227,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -210,21 +250,31 @@ public class FrmLogin extends javax.swing.JFrame {
 
                 //JOptionPane.showMessageDialog(null, "Login correcto");
                 Menu menu = new Menu();
-                menu.setBounds(0, 0, 1200, 700);
+                menu.setBounds(0, 0, 1000, 600);
                 menu.setVisible(true);
                 menu.setResizable(false);
                 menu.setLocationRelativeTo(null);
                 this.setVisible(false);
                 dispose();
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario o clave incorrectos");
-                Limpiar();
+            } else {                
+               
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Ingrese sus credenciales");
+        
+            // Cambia la fuente del mensaje de JOptionPane a Arial, en negrita y tamaño 20
+        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD, 16));        
+        // Cambia el color del texto del mensaje de JOptionPane a rojo
+        //UIManager.put("OptionPane.messageForeground", Color.BLUE);
+
+        // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
+        JOptionPane.showMessageDialog(null, "ingrese sus credenciales", "Warning !",
+                JOptionPane.PLAIN_MESSAGE, getIcon("/img/warning.png", 40, 40));      
+            
         }
+        // Metodo para limpiar los campos despues del mensaje de advertencia
+          Limpiar();
     }
     
     // -------------------------------- Metodo para limpiar los campos -----------------------------------------------//
@@ -235,4 +285,9 @@ public class FrmLogin extends javax.swing.JFrame {
         txt_password.setText("");
     }
 
+      // ------------------------------ Metodo para agregar iconos a los JOptionPane  -----------------------------//
+     private Icon getIcon(String path, int w, int h){
+     return new ImageIcon(new ImageIcon(getClass(). getResource(path))
+        .getImage().getScaledInstance(w,h,0));
+     }
 }

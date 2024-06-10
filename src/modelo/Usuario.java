@@ -2,10 +2,11 @@
 package modelo;
 
 /**
- * Esta clase representa un usuario del sistema.
- * Contiene atributos y métodos para gestionar la información del usuario.
  * 
- * @author Miller
+ * @author Milliany Tech
+ * @version: 0.1
+ * @Date 2 enero - 2024
+ * @Name Sistema de informacion
  */
 public class Usuario {
     
@@ -16,8 +17,8 @@ public class Usuario {
     public String usuario; // Nombre de usuario para iniciar sesión
     private String password; // Contraseña del usuario
     private String telefono; // Número de teléfono del usuario
-    private String email;
-    private String registrado_por;
+    private String email; // Email del usuario
+    private String registrado_por; 
     private int estado; // Estado del usuario (activo, inactivo, etc.)
     
 
@@ -90,26 +91,30 @@ public class Usuario {
         return telefono;
     }
     
-      public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
+    // Establece el número de teléfono del usuario
+public void setTelefono(String telefono) {
+    this.telefono = telefono;
+}
 
-    public String getEmail() {
-        return email;
-    }
+// Devuelve el correo electrónico del usuario
+public String getEmail() {
+    return email;
+}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+// Establece el correo electrónico del usuario
+public void setEmail(String email) {
+    this.email = email;
+}
 
-    public String getRegistrado_por() {
-        return registrado_por;
-    }
+// Devuelve el nombre del usuario que lo registró
+public String getRegistrado_por() {
+    return registrado_por;
+}
 
-    public void setRegistrado_por(String registrado_por) {
-        this.registrado_por = registrado_por;
-    }
-    
+// Establece el nombre del usuario que lo registró
+public void setRegistrado_por(String registrado_por) {
+    this.registrado_por = registrado_por;
+}  
     
 
     // Métodos para acceder y modificar el estado del usuario

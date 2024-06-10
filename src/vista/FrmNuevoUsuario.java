@@ -1,59 +1,90 @@
 package vista;
 
 import controlador.Ctrl_Usuario;
+import modelo.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.geom.RoundRectangle2D;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import modelo.Usuario;
+
 
 /**
  *
- * @author Miller
+ * @author Milliany Tech
+ * @version: 0.1
+ * @Date 2 enero - 2024
+ * @Name Sistema de informacion
+ *
  */
 public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     public FrmNuevoUsuario() {
+
+        // Metodo para poner transparente el jframe
+        //setUndecorated(true);
+
         initComponents();
         this.setSize(600, 450);
+        this.setLocationRelativeTo(null);
         this.setTitle("Nuevo Usuario.");
-        
+
         txt_password.setVisible(true);
         txt_password_visible.setVisible(false);
-     // Establecer la operación de cierre por defecto
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
-          // ----------------------------------------Colocar imagen de fondo----------------------------------------------// 
-    // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
-ImageIcon wallpaper = new ImageIcon("src/img/fondo2.jpg");
+        // Evita que el programa se cierre al cerrar esta ventana 
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        // Redondear las esquinas del jframe 
+        //setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
+
+        // ----------------------------------------Colocar imagen de fondo----------------------------------------------// 
+        // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
+        ImageIcon wallpaper = new ImageIcon("src/img/bg-gradiente.jpg");
 // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
 // Obtiene la imagen del ImageIcon
-Icon icono = new ImageIcon(
-    wallpaper.getImage().getScaledInstance( // Escala la imagen
-        jLabel_Wallpaper.getWidth(),        // Ancho actual del jLabel_Wallpaper
-        jLabel_Wallpaper.getHeight(),       // Alto actual del jLabel_Wallpaper
-        Image.SCALE_DEFAULT                 // Algoritmo de escalado (por defecto)
-    )
-);
+        Icon icono = new ImageIcon(
+                wallpaper.getImage().getScaledInstance( // Escala la imagen
+                        jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
+                        jLabel_Wallpaper.getHeight(), // Alto actual del jLabel_Wallpaper
+                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
+                )
+        );
 // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
-jLabel_Wallpaper.setIcon(icono);
+        jLabel_Wallpaper.setIcon(icono);
 // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
-this.repaint();
+        this.repaint();
+        
+               // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
+        // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
+        ImageIcon wallpaper_cabecera = new ImageIcon("src/img/fondo3.jpg");
+// Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
+// Obtiene la imagen del ImageIcon
+        Icon icono_ = new ImageIcon(
+                wallpaper_cabecera.getImage().getScaledInstance( // Escala la imagen
+                        jLabel_cabecera.getWidth(), // Ancho actual del jLabel_Wallpaper
+                        jLabel_cabecera.getHeight(), // Alto actual del jLabel_Wallpaper
+                        Image.SCALE_DEFAULT // Algoritmo de escalado (por defecto)
+                )
+        );
+// Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
+        jLabel_cabecera.setIcon(icono_);
+// Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
+        this.repaint();
     }
-    
+
     //------------------------------------ Cambiamos el icono del Jframe ------------------------------------------//
-  @Override
-public Image getIconImage() {
-    // Utiliza Toolkit para obtener la imagen desde el recurso especificado
-    Image retValue = Toolkit.getDefaultToolkit().getImage(
-        // Ruta del recurso de la imagen dentro del classpath
-        ClassLoader.getSystemResource("img/logo.png")
-    );
-    // Devuelve la imagen obtenida
-    return retValue;
-}
+    @Override
+    public Image getIconImage() {
+        // Utiliza Toolkit para obtener la imagen desde el recurso especificado
+        Image retValue = Toolkit.getDefaultToolkit().getImage(
+                // Ruta del recurso de la imagen dentro del classpath
+                ClassLoader.getSystemResource("img/favicon.png")
+        );
+        // Devuelve la imagen obtenida
+        return retValue;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,12 +112,16 @@ public Image getIconImage() {
         txt_email = new javax.swing.JTextField();
         jCheckBox_ver_clave = new javax.swing.JCheckBox();
         txt_password_visible = new javax.swing.JTextField();
+        jLabel_cabecera = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Btn_regresar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Btn_regresar.setText("regresar");
         Btn_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,27 +130,40 @@ public Image getIconImage() {
         });
         getContentPane().add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 140, -1));
 
+        Btn_gestionarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_gestionarUsuarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Btn_gestionarUsuarios.setText("Gestionar Usuarios");
-        getContentPane().add(Btn_gestionarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 140, -1));
+        Btn_gestionarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_gestionarUsuariosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Btn_gestionarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 170, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Registrar Usuario");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 160, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 160, -1));
 
-        jLabel_username.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_username.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_username.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_username.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_username.setText("Usuario :");
         getContentPane().add(jLabel_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
 
-        jLabel_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_password.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_password.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_password.setText("Password :");
         getContentPane().add(jLabel_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, -1, -1));
 
+        txt_usuario.setBackground(new java.awt.Color(255, 255, 255));
+        txt_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_usuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 180, -1));
 
+        txt_password.setBackground(new java.awt.Color(255, 255, 255));
+        txt_password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_password.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,59 +172,78 @@ public Image getIconImage() {
         });
         getContentPane().add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 180, -1));
 
+        Btn_guardar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Btn_guardar.setText("Guardar");
         Btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_guardarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 130, -1));
+        getContentPane().add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 140, -1));
 
-        jLabel_apellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_apellido.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_apellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_apellido.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_apellido.setText("Apellido :");
         getContentPane().add(jLabel_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
 
-        jLabel_telefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_telefono.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_telefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_telefono.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_telefono.setText("Telefono :");
         getContentPane().add(jLabel_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
+        txt_telefono.setBackground(new java.awt.Color(255, 255, 255));
+        txt_telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_telefono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 180, -1));
 
-        Jlabel_email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Jlabel_email.setForeground(new java.awt.Color(255, 255, 255));
+        Jlabel_email.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Jlabel_email.setForeground(new java.awt.Color(51, 51, 51));
         Jlabel_email.setText("Email :");
         getContentPane().add(Jlabel_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
-        jLabel_password4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_password4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_password4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_password4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_password4.setText("Tipo Nivel :");
         getContentPane().add(jLabel_password4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
 
-        jLabel_password5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_password5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_password5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_password5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_password5.setText("Registrado por :");
         getContentPane().add(jLabel_password5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, -1, -1));
 
-        jLabel_password6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_password6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_password6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_password6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_password6.setText("Nombre :");
         getContentPane().add(jLabel_password6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
 
+        txt_tipo_nivel.setBackground(new java.awt.Color(255, 255, 255));
+        txt_tipo_nivel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_tipo_nivel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_tipo_nivel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_tipo_nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 180, -1));
 
+        txt_registrado_por.setBackground(new java.awt.Color(255, 255, 255));
+        txt_registrado_por.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_registrado_por.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_registrado_por.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_registrado_por, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 180, -1));
 
+        txt_nombre.setBackground(new java.awt.Color(255, 255, 255));
+        txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_nombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 180, -1));
 
+        txt_apellido.setBackground(new java.awt.Color(255, 255, 255));
+        txt_apellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_apellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_apellido.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 180, -1));
 
+        txt_email.setBackground(new java.awt.Color(255, 255, 255));
+        txt_email.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_email.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 180, -1));
 
@@ -187,10 +254,14 @@ public Image getIconImage() {
         });
         getContentPane().add(jCheckBox_ver_clave, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
 
+        txt_password_visible.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_password_visible.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_password_visible.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_password_visible, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 180, -1));
+        getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 60));
 
         jLabel_Wallpaper.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_Wallpaper.setForeground(new java.awt.Color(51, 51, 51));
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 450));
 
         pack();
@@ -201,8 +272,9 @@ public Image getIconImage() {
         Menu menu = new Menu();
         // Establece la visibilidad de la ventana Menu como verdadera para que sea visible para el usuario.
         menu.setVisible(true);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         dispose();
-        
+
     }//GEN-LAST:event_Btn_regresarActionPerformed
 
     private void Btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_guardarActionPerformed
@@ -223,7 +295,7 @@ public Image getIconImage() {
             if (controlUsuario.existeUsuario(txt_usuario.getText().trim())) {
                 // Si el usuario ya existe, mostramos un mensaje de advertencia.
                 JOptionPane.showMessageDialog(null, "Usuario ya registrado en la Base de datos, intenta de nuevo.");
-                
+
                 Limpiar();
             } else {
                 // Si el usuario no existe, creamos una nueva instancia de Usuario.
@@ -247,7 +319,7 @@ public Image getIconImage() {
                 } else {
                     // Si hay un error al guardar el usuario, mostramos un mensaje de error.
                     JOptionPane.showMessageDialog(null, "Error al registrar usuario.");
-                   
+
                     Limpiar();
                 }
             }
@@ -260,23 +332,30 @@ public Image getIconImage() {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void jCheckBox_ver_claveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox_ver_claveMouseClicked
-        
-        if(jCheckBox_ver_clave.isSelected() == true){
+
+        if (jCheckBox_ver_clave.isSelected() == true) {
             String pass = "";
-            char[ ] passIngresado = txt_password.getPassword();
-            for(int i = 0; i < passIngresado.length; i++){
+            char[] passIngresado = txt_password.getPassword();
+            for (int i = 0; i < passIngresado.length; i++) {
                 pass += passIngresado[i];
             }
             txt_password_visible.setText(pass);
             txt_password.setVisible(false);
             txt_password_visible.setVisible(true);
-        }else {
+        } else {
             String passwordIngresado = txt_password_visible.getText().trim();
             txt_password.setText(passwordIngresado);
             txt_password.setVisible(true);
             txt_password_visible.setVisible(false);
         }
     }//GEN-LAST:event_jCheckBox_ver_claveMouseClicked
+
+    private void Btn_gestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_gestionarUsuariosActionPerformed
+        FrmGestionarUsuarios frmGestionarUsuarios = new FrmGestionarUsuarios();
+        frmGestionarUsuarios.setVisible(true);
+        frmGestionarUsuarios.setLocation(300, 150); // Nueva posición: 500 píxeles desde la izquierda y 200 píxeles desde la parte superior
+
+    }//GEN-LAST:event_Btn_gestionarUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,6 +401,7 @@ public Image getIconImage() {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JLabel jLabel_apellido;
+    private javax.swing.JLabel jLabel_cabecera;
     private javax.swing.JLabel jLabel_password;
     private javax.swing.JLabel jLabel_password4;
     private javax.swing.JLabel jLabel_password5;
