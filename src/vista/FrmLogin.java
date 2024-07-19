@@ -1,15 +1,13 @@
 package vista;
 
+
 import controlador.Ctrl_Usuario;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.WindowConstants;
 import modelo.Usuario;
+import servicios.TextPrompt;
 
 /**
  *
@@ -20,10 +18,21 @@ import modelo.Usuario;
  * 
  */
 public class FrmLogin extends javax.swing.JFrame {
+    
 
     public FrmLogin() {
         this.setUndecorated(true);
         initComponents();
+        
+        // metodo para el placeholder en los txt        
+        TextPrompt usuario = new TextPrompt("   Ingrese su username." ,txt_usuario);
+        TextPrompt contrasena = new TextPrompt("   Ingrese su password." ,txt_password);
+        
+       
+         txt_password.setVisible(true);
+        txt_password_visible.setVisible(false);
+       
+        
         // Cierra todos los procesos en segundo plano cuando se cierra esta ventana
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(null);
@@ -40,7 +49,11 @@ public class FrmLogin extends javax.swing.JFrame {
         // Permite que el jFrame aparezca en el centro
        // this.setLocationRelativeTo(null);
        
-         // ----------------------------------------Colocar imagen de fondo----------------------------------------------// 
+       /*
+    * ------------------------------------------------------------------------------------------------------------------------
+    *                                                            Colocar imagen de fondo
+    * ------------------------------------------------------------------------------------------------------------------------
+     */
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
         ImageIcon wallpaper = new ImageIcon("src/img/bg-gradiente.jpg");
        // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
@@ -76,10 +89,10 @@ public class FrmLogin extends javax.swing.JFrame {
         txt_password = new javax.swing.JPasswordField();
         btn_IniciarSesion = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         Btn_cerrarLogin = new javax.swing.JButton();
+        jCheckBox_ver_clave = new javax.swing.JCheckBox();
+        txt_password_visible = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -135,6 +148,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btn_IniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_IniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btn_IniciarSesion.setText("Iniciar Sesion");
+        btn_IniciarSesion.setToolTipText("Click para iniciar sesion");
         btn_IniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_IniciarSesionActionPerformed(evt);
@@ -144,16 +158,6 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 312, 160, 2));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel7.setText("Password");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 70, 30));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setText("Email or Username");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 150, -1));
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 160, 2));
@@ -167,6 +171,19 @@ public class FrmLogin extends javax.swing.JFrame {
         });
         jPanel2.add(Btn_cerrarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
+        jCheckBox_ver_clave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox_ver_claveActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jCheckBox_ver_clave, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 20, -1));
+
+        txt_password_visible.setBackground(new java.awt.Color(255, 255, 255));
+        txt_password_visible.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_password_visible.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_password_visible.setBorder(null);
+        jPanel2.add(txt_password_visible, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 150, 30));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 350, 500));
 
         pack();
@@ -177,9 +194,27 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_IniciarSesionActionPerformed
 
     private void Btn_cerrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarLoginActionPerformed
-         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        dispose();
+          System.exit(0);
     }//GEN-LAST:event_Btn_cerrarLoginActionPerformed
+
+    private void jCheckBox_ver_claveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_ver_claveActionPerformed
+                
+        if (jCheckBox_ver_clave.isSelected() == true) {
+            String pass = "";
+            char[] passIngresado = txt_password.getPassword();
+            for (int i = 0; i < passIngresado.length; i++) {
+                pass += passIngresado[i];
+            }
+            txt_password_visible.setText(pass);
+            txt_password.setVisible(false);
+            txt_password_visible.setVisible(true);
+        } else {
+            String passwordIngresado = txt_password_visible.getText().trim();
+            txt_password.setText(passwordIngresado);
+            txt_password.setVisible(true);
+            txt_password_visible.setVisible(false);
+        }
+    }//GEN-LAST:event_jCheckBox_ver_claveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,75 +254,81 @@ public class FrmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_cerrarLogin;
     private javax.swing.JButton btn_IniciarSesion;
+    private javax.swing.JCheckBox jCheckBox_ver_clave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField txt_password;
+    private javax.swing.JTextField txt_password_visible;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 
-    // Metodo para loguearse
-    private void login() {
-
-        if (!txt_usuario.getText().isEmpty() && !txt_password.getText().isEmpty()) {
-
-            Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-            Usuario usuario = new Usuario();
-            usuario.setUsuario(txt_usuario.getText().trim());
-            usuario.setPassword(txt_password.getText().trim());
-
-            if (controlUsuario.loginUser(usuario)) {
-
-                //JOptionPane.showMessageDialog(null, "Login correcto");
-                Menu menu = new Menu();
-                menu.setBounds(0, 0, 1000, 600);
-                menu.setVisible(true);
-                menu.setResizable(false);
-                menu.setLocationRelativeTo(null);
-                this.setVisible(false);
-                dispose();
-
-            } else {                
-               
-            }
-
-        } else {
+   
+     /*
+    * ------------------------------------------------------------------------------------------------------------------------
+    *                                                            Metodo para loguearse
+    * ------------------------------------------------------------------------------------------------------------------------
+     */
+    private void login() {     
         
-            // Cambia la fuente del mensaje de JOptionPane a Arial, en negrita y tamaño 20
-        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD, 16));        
-        // Cambia el color del texto del mensaje de JOptionPane a rojo
-        //UIManager.put("OptionPane.messageForeground", Color.BLUE);
+         // Método para manejar el proceso de inicio de sesión
+    if (!txt_usuario.getText().isEmpty() && !txt_password.getText().isEmpty()) {
+        // Verifica que los campos de usuario y contraseña no estén vacíos
+        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+        // Crea una instancia del controlador de usuario
+        Usuario usuario = new Usuario();
+        // Crea una instancia de un objeto Usuario
+        usuario.setUsuario(txt_usuario.getText().trim());
+        // Asigna el texto del campo de usuario al objeto usuario, eliminando espacios en blanco
+        usuario.setPassword(txt_password.getText().trim());
+        // Asigna el texto del campo de contraseña al objeto usuario, eliminando espacios en blanco
+        if (controlUsuario.loginUser(usuario)) {
+            // Verifica si el usuario es válido según el controlador
 
-        // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
-        JOptionPane.showMessageDialog(null, "ingrese sus credenciales", "Warning !",
-                JOptionPane.PLAIN_MESSAGE, getIcon("/img/warning.png", 40, 40));      
-            
+            //JOptionPane.showMessageDialog(null, "Login correcto");
+            // Muestra un mensaje de confirmación de inicio de sesión correcto (comentado)
+            Menu menu = new Menu();
+            // Crea una instancia del menú principal
+            menu.setBounds(0, 0, 1000, 600);
+            // Establece el tamaño y posición del menú
+            menu.setVisible(true);
+            // Muestra el menú
+            menu.setResizable(false);
+            // Deshabilita el redimensionamiento del menú
+            menu.setLocationRelativeTo(null);
+            // Centra el menú en la pantalla
+              this.setVisible(false);
+            // Oculta la ventana de inicio de sesión
+            dispose();
+            // Libera los recursos de la ventana de inicio de sesión
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al iniciar sesion.");
+            // Aquí puedes agregar código para manejar el error, como mostrar un mensaje de error
         }
+        } else {                  
+            JOptionPane.showMessageDialog(null,"Debes completar todos los campos.");
+        } 
         // Metodo para limpiar los campos despues del mensaje de advertencia
           Limpiar();
+
     }
-    
-    // -------------------------------- Metodo para limpiar los campos -----------------------------------------------//
+    /*
+    * ------------------------------------------------------------------------------------------------------------------------
+    *                                                     Metodo para limpiar los campos
+    * ------------------------------------------------------------------------------------------------------------------------
+     */
      private void Limpiar() {
         // Limpia el campo de texto para el usuario, estableciéndolo como una cadena vacía.
         txt_usuario.setText("");
         // Limpia el campo de texto para la contraseña, estableciéndolo como una cadena vacía.
         txt_password.setText("");
     }
-
-      // ------------------------------ Metodo para agregar iconos a los JOptionPane  -----------------------------//
-     private Icon getIcon(String path, int w, int h){
-     return new ImageIcon(new ImageIcon(getClass(). getResource(path))
-        .getImage().getScaledInstance(w,h,0));
-     }
 }

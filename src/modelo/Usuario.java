@@ -18,6 +18,8 @@ public class Usuario {
     private String password; // Contraseña del usuario
     private String telefono; // Número de teléfono del usuario
     private String email; // Email del usuario
+    private int imagen;
+    private String ruta;
     private String registrado_por; 
     private int estado; // Estado del usuario (activo, inactivo, etc.)
     
@@ -34,6 +36,8 @@ public class Usuario {
         this.password = "";
         this.telefono = "";
         this.email = "";
+        this.imagen = 0;
+        this.ruta = "";
         this.registrado_por = "";
         this.estado = 0;
         
@@ -105,6 +109,24 @@ public String getEmail() {
 public void setEmail(String email) {
     this.email = email;
 }
+
+    public int getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+
+
 
 // Devuelve el nombre del usuario que lo registró
 public String getRegistrado_por() {

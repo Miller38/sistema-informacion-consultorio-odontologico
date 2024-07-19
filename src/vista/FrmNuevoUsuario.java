@@ -1,15 +1,22 @@
 package vista;
 
+import servicios.TextPrompt;
 import controlador.Ctrl_Usuario;
 import modelo.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.RoundRectangle2D;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-
+import servicios.Utilidades;
 
 /**
  *
@@ -21,15 +28,27 @@ import javax.swing.WindowConstants;
  */
 public class FrmNuevoUsuario extends javax.swing.JFrame {
 
+    private FileInputStream fis;
+    private int longitudBytes;
+
     public FrmNuevoUsuario() {
 
         // Metodo para poner transparente el jframe
         //setUndecorated(true);
-
         initComponents();
-        this.setSize(600, 450);
+        this.setSize(600, 530);
         this.setLocationRelativeTo(null);
         this.setTitle("Nuevo Usuario.");
+
+        // placeholder
+        TextPrompt nombrePrompt = new TextPrompt("         Ingrese aqui su nombre.", txt_nombre);
+        TextPrompt usuarioPrompt = new TextPrompt("  Ingrese aqui su usuario.", txt_usuario);
+        TextPrompt apellidoPrompt = new TextPrompt("         Ingrese aqui su apellido.", txt_apellido);
+        TextPrompt telefonoPrompt = new TextPrompt("        Ingrese aqui su telefono.", txt_telefono);
+        TextPrompt emailPrompt = new TextPrompt("         ingrese aqui su email.", txt_email);
+        TextPrompt passPrompt = new TextPrompt(" ingrese aqui su password.", txt_password);
+        TextPrompt registradoPrompt = new TextPrompt("         ingrese registrado por.", txt_registrado_por);
+        TextPrompt tiponivelPrompt = new TextPrompt("         ingrese su tipo de nivel.", txt_tipo_nivel);
 
         txt_password.setVisible(true);
         txt_password_visible.setVisible(false);
@@ -38,7 +57,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         // Redondear las esquinas del jframe 
         //setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
-
         // ----------------------------------------Colocar imagen de fondo----------------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
         ImageIcon wallpaper = new ImageIcon("src/img/bg-gradiente.jpg");
@@ -55,8 +73,8 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         jLabel_Wallpaper.setIcon(icono);
 // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
         this.repaint();
-        
-               // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
+
+        // -------------------------------------Colocar imagen de fondo cabecera----------------------------------------// 
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
         ImageIcon wallpaper_cabecera = new ImageIcon("src/img/fondo3.jpg");
 // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
@@ -113,6 +131,9 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         jCheckBox_ver_clave = new javax.swing.JCheckBox();
         txt_password_visible = new javax.swing.JTextField();
         jLabel_cabecera = new javax.swing.JLabel();
+        jLabel_foto = new javax.swing.JLabel();
+        txt_ruta = new javax.swing.JTextField();
+        label_nombreusuario = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,23 +143,26 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
         Btn_regresar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/atras.png"))); // NOI18N
         Btn_regresar.setText("regresar");
+        Btn_regresar.setToolTipText("Click para regresar al Menu");
         Btn_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_regresarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 140, -1));
+        getContentPane().add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 140, -1));
 
         Btn_gestionarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         Btn_gestionarUsuarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Btn_gestionarUsuarios.setText("Gestionar Usuarios");
+        Btn_gestionarUsuarios.setToolTipText("Click para ver y gestionar los usuarios");
         Btn_gestionarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_gestionarUsuariosActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_gestionarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 170, -1));
+        getContentPane().add(Btn_gestionarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 170, 40));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,18 +172,18 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         jLabel_username.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_username.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_username.setText("Usuario :");
-        getContentPane().add(jLabel_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
+        getContentPane().add(jLabel_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
 
         jLabel_password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_password.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_password.setText("Password :");
-        getContentPane().add(jLabel_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, -1, -1));
+        getContentPane().add(jLabel_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
 
         txt_usuario.setBackground(new java.awt.Color(255, 255, 255));
         txt_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_usuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 180, -1));
+        getContentPane().add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 180, -1));
 
         txt_password.setBackground(new java.awt.Color(255, 255, 255));
         txt_password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -170,17 +194,19 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
                 txt_passwordActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 180, -1));
+        getContentPane().add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 180, -1));
 
         Btn_guardar.setBackground(new java.awt.Color(255, 255, 255));
         Btn_guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/anydo.png"))); // NOI18N
         Btn_guardar.setText("Guardar");
+        Btn_guardar.setToolTipText("Click para guardar un nuevo usuario");
         Btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_guardarActionPerformed(evt);
             }
         });
-        getContentPane().add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 140, -1));
+        getContentPane().add(Btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 140, -1));
 
         jLabel_apellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_apellido.setForeground(new java.awt.Color(51, 51, 51));
@@ -193,9 +219,10 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
         txt_telefono.setBackground(new java.awt.Color(255, 255, 255));
+        txt_telefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_telefono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 180, -1));
+        getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 230, -1));
 
         Jlabel_email.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Jlabel_email.setForeground(new java.awt.Color(51, 51, 51));
@@ -205,12 +232,12 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         jLabel_password4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_password4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_password4.setText("Tipo Nivel :");
-        getContentPane().add(jLabel_password4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
+        getContentPane().add(jLabel_password4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         jLabel_password5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_password5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_password5.setText("Registrado por :");
-        getContentPane().add(jLabel_password5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, -1, -1));
+        getContentPane().add(jLabel_password5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
         jLabel_password6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_password6.setForeground(new java.awt.Color(51, 51, 51));
@@ -221,48 +248,63 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         txt_tipo_nivel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_tipo_nivel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_tipo_nivel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_tipo_nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 180, -1));
+        getContentPane().add(txt_tipo_nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 230, -1));
 
         txt_registrado_por.setBackground(new java.awt.Color(255, 255, 255));
         txt_registrado_por.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_registrado_por.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_registrado_por.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_registrado_por, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 180, -1));
+        getContentPane().add(txt_registrado_por, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 230, -1));
 
         txt_nombre.setBackground(new java.awt.Color(255, 255, 255));
         txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_nombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 180, -1));
+        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 230, -1));
 
         txt_apellido.setBackground(new java.awt.Color(255, 255, 255));
         txt_apellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_apellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_apellido.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 180, -1));
+        getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 230, -1));
 
         txt_email.setBackground(new java.awt.Color(255, 255, 255));
         txt_email.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_email.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 180, -1));
+        getContentPane().add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 230, -1));
 
+        jCheckBox_ver_clave.setToolTipText("Click para ver su password");
         jCheckBox_ver_clave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCheckBox_ver_claveMouseClicked(evt);
             }
         });
-        getContentPane().add(jCheckBox_ver_clave, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
+        getContentPane().add(jCheckBox_ver_clave, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, -1, -1));
 
         txt_password_visible.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_password_visible.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_password_visible.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_password_visible, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 180, -1));
+        getContentPane().add(txt_password_visible, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 180, -1));
         getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 60));
+
+        jLabel_foto.setToolTipText("Click para agregar una fotografia");
+        jLabel_foto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel_foto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_fotoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 160, 140));
+
+        txt_ruta.setFocusable(false);
+        txt_ruta.setOpaque(false);
+        getContentPane().add(txt_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 180, -1));
+        getContentPane().add(label_nombreusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 280, 30));
 
         jLabel_Wallpaper.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel_Wallpaper.setForeground(new java.awt.Color(51, 51, 51));
-        getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 450));
+        getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -303,7 +345,8 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
                 // Establecemos los valores del usuario con los datos ingresados en los campos de texto.
                 usuario.setUsuario(txt_usuario.getText().trim());
-                usuario.setPassword(txt_password.getText().trim());
+                // Encriptamos la contraseña antes de establecerla en el objeto Usuario.
+                usuario.setPassword(Utilidades.encriptarSHA1(txt_password.getText().trim()));
                 usuario.setNombre(txt_nombre.getText().trim());
                 usuario.setApellido(txt_apellido.getText().trim());
                 usuario.setTelefono(txt_telefono.getText().trim());
@@ -357,6 +400,39 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_Btn_gestionarUsuariosActionPerformed
 
+    private void jLabel_fotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_fotoMouseClicked
+// Crea un objeto JFileChooser para abrir un diálogo de selección de archivos
+        JFileChooser archivo = new JFileChooser();
+// Configura el JFileChooser para permitir solo la selección de archivos (no directorios)
+        archivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+// Muestra el cuadro de diálogo de apertura de archivos y almacena el resultado (aceptar o cancelar)
+        int estado = archivo.showOpenDialog(null);
+// Verifica si el usuario seleccionó un archivo (presionó "Aceptar")
+        if (estado == JFileChooser.APPROVE_OPTION) {
+            try {
+                // Crea un FileInputStream para leer el archivo seleccionado
+                fis = new FileInputStream(archivo.getSelectedFile());
+                // Almacena la longitud del archivo seleccionado en bytes
+                this.longitudBytes = (int) archivo.getSelectedFile().length();
+                // Lee la imagen del archivo seleccionado
+                Image icono = ImageIO.read(archivo.getSelectedFile());
+                // Escala la imagen a las dimensiones del jLabel_foto
+                Image scaledIcono = icono.getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_DEFAULT);
+                // Establece la imagen escalada como el ícono del jLabel_foto
+                jLabel_foto.setIcon(new ImageIcon(scaledIcono));
+            } catch (FileNotFoundException e) {
+                // Maneja la excepción si el archivo no se encuentra
+                e.printStackTrace();
+                System.out.println("Error en el primer catch");
+            } catch (IOException e) {
+                // Maneja la excepción si ocurre un error de entrada/salida al leer el archivo
+                e.printStackTrace();
+                System.out.println("Error en el segundo catch");
+            }
+        }
+
+    }//GEN-LAST:event_jLabel_fotoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -402,18 +478,21 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JLabel jLabel_apellido;
     private javax.swing.JLabel jLabel_cabecera;
+    private javax.swing.JLabel jLabel_foto;
     private javax.swing.JLabel jLabel_password;
     private javax.swing.JLabel jLabel_password4;
     private javax.swing.JLabel jLabel_password5;
     private javax.swing.JLabel jLabel_password6;
     private javax.swing.JLabel jLabel_telefono;
     private javax.swing.JLabel jLabel_username;
+    private javax.swing.JLabel label_nombreusuario;
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_password_visible;
     private javax.swing.JTextField txt_registrado_por;
+    private javax.swing.JTextField txt_ruta;
     private javax.swing.JTextField txt_telefono;
     private javax.swing.JTextField txt_tipo_nivel;
     private javax.swing.JTextField txt_usuario;
@@ -424,5 +503,11 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         txt_usuario.setText("");
         // Limpia el campo de texto para la contraseña, estableciéndolo como una cadena vacía.
         txt_password.setText("");
+        txt_nombre.setText("");
+        txt_apellido.setText("");
+        txt_telefono.setText("");
+        txt_email.setText("");
+        txt_registrado_por.setText("");
+        txt_tipo_nivel.setText("");
     }
 }

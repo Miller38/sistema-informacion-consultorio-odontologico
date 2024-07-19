@@ -6,6 +6,7 @@ import java.sql.Connection;
 import conexion.Conexion;
 // Importa la clase Ctrl_Usuario de un paquete personalizado 'controlador' para manejar las operaciones de usuario
 import controlador.Ctrl_Usuario;
+import pdf.GeneradorPDF;
 // Importa las clases MouseAdapter y MouseEvent de java.awt.event para manejar eventos de mouse
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -38,6 +39,8 @@ import javax.swing.JTable;
 // Importa la clase Usuario de un paquete personalizado 'modelo' para representar la entidad usuario
 import modelo.Usuario;
 
+
+
 /**
  *
  * @author Milliany Tech
@@ -58,7 +61,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
         initComponents();
         // Establece el tamaño de la ventana en píxeles
-        this.setSize(770, 520);
+        this.setSize(770, 575);
         // Establece el título de la ventana
         this.setTitle("Gestionar Usuarios");
         this.setLocation(300, 150); // Nueva posición: 500 píxeles desde la izquierda y 200 píxeles desde la parte superior
@@ -142,6 +145,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         txt_email = new javax.swing.JTextField();
         txt_password = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        Btn_reporte_pdf = new javax.swing.JButton();
         jLabel_cabecera = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
@@ -170,6 +174,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable_usuarios.setToolTipText("Informacion usuarios registrados ");
         jScrollPane1.setViewportView(jTable_usuarios);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 720, 260));
@@ -183,6 +188,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         Btn_actualizar.setBackground(new java.awt.Color(153, 255, 153));
         Btn_actualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Btn_actualizar.setText("Actualizar");
+        Btn_actualizar.setToolTipText("Click para actualizar la informacion de un usuario");
         Btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_actualizarActionPerformed(evt);
@@ -193,6 +199,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         Btn_eliminar.setBackground(new java.awt.Color(255, 102, 102));
         Btn_eliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Btn_eliminar.setText("Eliminar");
+        Btn_eliminar.setToolTipText("Click para eliminar un usuario");
         Btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_eliminarActionPerformed(evt);
@@ -206,11 +213,11 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 70, -1));
 
         txt_usuario.setBackground(new java.awt.Color(255, 255, 255));
-        txt_usuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_usuario.setForeground(new java.awt.Color(51, 51, 51));
         txt_usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_usuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 140, -1));
+        jPanel3.add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 190, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -218,24 +225,24 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         txt_nombre.setBackground(new java.awt.Color(255, 255, 255));
-        txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_nombre.setForeground(new java.awt.Color(51, 51, 51));
         txt_nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_nombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 140, -1));
+        jPanel3.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 190, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Apellido");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Telefono");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         txt_apellido.setBackground(new java.awt.Color(255, 255, 255));
-        txt_apellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_apellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_apellido.setForeground(new java.awt.Color(51, 51, 51));
         txt_apellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_apellido.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -244,40 +251,50 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
                 txt_apellidoActionPerformed(evt);
             }
         });
-        jPanel3.add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 110, -1));
+        jPanel3.add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 160, -1));
 
         txt_telefono.setBackground(new java.awt.Color(255, 255, 255));
-        txt_telefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_telefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_telefono.setForeground(new java.awt.Color(51, 51, 51));
         txt_telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_telefono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 110, -1));
+        jPanel3.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 190, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Email");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
 
         txt_email.setBackground(new java.awt.Color(255, 255, 255));
-        txt_email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_email.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_email.setForeground(new java.awt.Color(51, 51, 51));
         txt_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_email.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 120, -1));
+        jPanel3.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 160, -1));
 
         txt_password.setBackground(new java.awt.Color(255, 255, 255));
-        txt_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_password.setForeground(new java.awt.Color(51, 51, 51));
         txt_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_password.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 120, -1));
+        jPanel3.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 160, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Password");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 70, -1));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 70, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 740, 100));
+        Btn_reporte_pdf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_reporte_pdf.setText("Reporte PDF");
+        Btn_reporte_pdf.setToolTipText("Click para imprimir un reporte PDF");
+        Btn_reporte_pdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_reporte_pdfActionPerformed(evt);
+            }
+        });
+        jPanel3.add(Btn_reporte_pdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 120, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 740, 160));
         getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 50));
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 520));
 
@@ -356,6 +373,11 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Btn_eliminarActionPerformed
 
+    private void Btn_reporte_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_reporte_pdfActionPerformed
+        GeneradorPDF generadorPdf = new GeneradorPDF();
+        generadorPdf.generarReporteUsuarios();
+    }//GEN-LAST:event_Btn_reporte_pdfActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -394,6 +416,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_actualizar;
     private javax.swing.JButton Btn_eliminar;
+    private javax.swing.JButton Btn_reporte_pdf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -541,4 +564,6 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         // Limpia el campo de texto para la contraseña, estableciéndolo como una cadena vacía.
         txt_password.setText("");
     }
+    
+     
 }
