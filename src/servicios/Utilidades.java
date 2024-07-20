@@ -5,11 +5,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class Utilidades {
 
-    public static String encriptarSHA1(String texto) {
-        
+    public static String encriptarSHA3(String texto) {       
         
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            MessageDigest md = MessageDigest.getInstance("SHA3-256");
             byte[] hash = md.digest(texto.getBytes());
             StringBuilder sb = new StringBuilder();
             for (byte b : hash) {
@@ -23,8 +22,10 @@ public class Utilidades {
 
     public static boolean verificarPassword(String passwordIngresada, String passwordAlmacenada) {
         // Encripta la contraseña ingresada y la compara con la contraseña almacenada
-        String passwordEncriptada = encriptarSHA1(passwordIngresada);
+        String passwordEncriptada = encriptarSHA3(passwordIngresada);
         return passwordEncriptada.equals(passwordAlmacenada);
     }
 }
+
+
     

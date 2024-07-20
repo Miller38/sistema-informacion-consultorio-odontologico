@@ -30,6 +30,7 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
 
     private FileInputStream fis;
     private int longitudBytes;
+    
 
     public FrmNuevoUsuario() {
 
@@ -132,7 +133,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
         txt_password_visible = new javax.swing.JTextField();
         jLabel_cabecera = new javax.swing.JLabel();
         jLabel_foto = new javax.swing.JLabel();
-        txt_ruta = new javax.swing.JTextField();
         label_nombreusuario = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
@@ -296,10 +296,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 160, 140));
-
-        txt_ruta.setFocusable(false);
-        txt_ruta.setOpaque(false);
-        getContentPane().add(txt_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 180, -1));
         getContentPane().add(label_nombreusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 280, 30));
 
         jLabel_Wallpaper.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -320,54 +316,62 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_regresarActionPerformed
 
     private void Btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_guardarActionPerformed
-
         // Validamos que no hayan campos vacíos.
-        if (txt_usuario.getText().isEmpty() || txt_password.getText().isEmpty() || txt_nombre.getText().isEmpty()
-                || txt_apellido.getText().isEmpty() || txt_telefono.getText().isEmpty() || txt_email.getText().isEmpty()
-                || txt_registrado_por.getText().isEmpty()) {
-            // Si alguno de los campos está vacío, mostramos un mensaje de advertencia.
-            JOptionPane.showMessageDialog(null, "Debes completar todos los campos.");
-            // LLamamos el metodo limpiar para borrar la informacion ingresada
+    if (txt_usuario.getText().isEmpty() || txt_password.getText().isEmpty() || txt_nombre.getText().isEmpty()
+            || txt_apellido.getText().isEmpty() || txt_telefono.getText().isEmpty() || txt_email.getText().isEmpty()
+            || txt_registrado_por.getText().isEmpty()) {
+        // Si alguno de los campos está vacío, mostramos un mensaje de advertencia.
+        JOptionPane.showMessageDialog(null, "Debes completar todos los campos.");
+        // Llamamos el método limpiar para borrar la información ingresada.
+        Limpiar();
+    } else {
+        // Creamos una instancia de Ctrl_Usuario para manejar las operaciones de usuario.
+        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+
+        // Validamos si el usuario ya está registrado.
+        if (controlUsuario.existeUsuario(txt_usuario.getText().trim())) {
+            // Si el usuario ya existe, mostramos un mensaje de advertencia.
+            JOptionPane.showMessageDialog(null, "Usuario ya registrado en la Base de datos, intenta de nuevo.");
             Limpiar();
         } else {
-            // Creamos una instancia de Ctrl_Usuario para manejar las operaciones de usuario.
-            Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+            // Si el usuario no existe, creamos una nueva instancia de Usuario.
+            Usuario usuario = new Usuario();
 
-            // Validamos si el usuario ya está registrado.
-            if (controlUsuario.existeUsuario(txt_usuario.getText().trim())) {
-                // Si el usuario ya existe, mostramos un mensaje de advertencia.
-                JOptionPane.showMessageDialog(null, "Usuario ya registrado en la Base de datos, intenta de nuevo.");
+            // Establecemos los valores del usuario con los datos ingresados en los campos de texto.
+            usuario.setUsuario(txt_usuario.getText().trim());
+            // Encriptamos la contraseña antes de establecerla en el objeto Usuario.
+            usuario.setPassword(Utilidades.encriptarSHA3(txt_password.getText().trim()));
+            usuario.setNombre(txt_nombre.getText().trim());
+            usuario.setApellido(txt_apellido.getText().trim());
+            usuario.setTelefono(txt_telefono.getText().trim());
+            usuario.setEmail(txt_email.getText().trim());
+            usuario.setRegistrado_por(txt_registrado_por.getText().trim());
 
+            // Convertimos la imagen a un array de bytes
+            if (fis != null) {
+                try {
+                    usuario.setImagen(fis.readAllBytes());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Error al convertir la imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                // Si no se ha seleccionado una imagen, podrías establecer un valor predeterminado o null.
+                usuario.setImagen(null); // o new byte[0] si prefieres establecer un array vacío.
+            }
+
+            // Intentamos guardar el nuevo usuario.
+            if (controlUsuario.guardar(usuario)) {
+                // Si el usuario se guarda con éxito, mostramos un mensaje de confirmación.
+                JOptionPane.showMessageDialog(null, "Usuario registrado con éxito.");
                 Limpiar();
             } else {
-                // Si el usuario no existe, creamos una nueva instancia de Usuario.
-                Usuario usuario = new Usuario();
-
-                // Establecemos los valores del usuario con los datos ingresados en los campos de texto.
-                usuario.setUsuario(txt_usuario.getText().trim());
-                // Encriptamos la contraseña antes de establecerla en el objeto Usuario.
-                usuario.setPassword(Utilidades.encriptarSHA1(txt_password.getText().trim()));
-                usuario.setNombre(txt_nombre.getText().trim());
-                usuario.setApellido(txt_apellido.getText().trim());
-                usuario.setTelefono(txt_telefono.getText().trim());
-                usuario.setEmail(txt_email.getText().trim());
-                usuario.setRegistrado_por(txt_registrado_por.getText().trim());
-
-                // Intentamos guardar el nuevo usuario.
-                if (controlUsuario.guardar(usuario)) {
-                    // Si el usuario se guarda con éxito, mostramos un mensaje de confirmación.
-                    JOptionPane.showMessageDialog(null, "Usuario registrado con éxito.");
-                    // Establecer el color de los campos a verde.
-                    Limpiar();
-                } else {
-                    // Si hay un error al guardar el usuario, mostramos un mensaje de error.
-                    JOptionPane.showMessageDialog(null, "Error al registrar usuario.");
-
-                    Limpiar();
-                }
+                // Si hay un error al guardar el usuario, mostramos un mensaje de error.
+                JOptionPane.showMessageDialog(null, "Error al registrar usuario.");
+                Limpiar();
             }
         }
-
+    }
     }//GEN-LAST:event_Btn_guardarActionPerformed
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
@@ -401,36 +405,39 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_gestionarUsuariosActionPerformed
 
     private void jLabel_fotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_fotoMouseClicked
-// Crea un objeto JFileChooser para abrir un diálogo de selección de archivos
-        JFileChooser archivo = new JFileChooser();
-// Configura el JFileChooser para permitir solo la selección de archivos (no directorios)
-        archivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
-// Muestra el cuadro de diálogo de apertura de archivos y almacena el resultado (aceptar o cancelar)
-        int estado = archivo.showOpenDialog(null);
-// Verifica si el usuario seleccionó un archivo (presionó "Aceptar")
-        if (estado == JFileChooser.APPROVE_OPTION) {
-            try {
-                // Crea un FileInputStream para leer el archivo seleccionado
-                fis = new FileInputStream(archivo.getSelectedFile());
-                // Almacena la longitud del archivo seleccionado en bytes
-                this.longitudBytes = (int) archivo.getSelectedFile().length();
-                // Lee la imagen del archivo seleccionado
-                Image icono = ImageIO.read(archivo.getSelectedFile());
-                // Escala la imagen a las dimensiones del jLabel_foto
-                Image scaledIcono = icono.getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_DEFAULT);
-                // Establece la imagen escalada como el ícono del jLabel_foto
-                jLabel_foto.setIcon(new ImageIcon(scaledIcono));
-            } catch (FileNotFoundException e) {
-                // Maneja la excepción si el archivo no se encuentra
-                e.printStackTrace();
-                System.out.println("Error en el primer catch");
-            } catch (IOException e) {
-                // Maneja la excepción si ocurre un error de entrada/salida al leer el archivo
-                e.printStackTrace();
-                System.out.println("Error en el segundo catch");
-            }
+/// Crea un objeto JFileChooser para abrir un diálogo de selección de archivos
+    JFileChooser archivo = new JFileChooser();
+    // Configura el JFileChooser para permitir solo la selección de archivos (no directorios)
+    archivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    // Muestra el cuadro de diálogo de apertura de archivos y almacena el resultado (aceptar o cancelar)
+    int estado = archivo.showOpenDialog(null);
+    // Verifica si el usuario seleccionó un archivo (presionó "Aceptar")
+    if (estado == JFileChooser.APPROVE_OPTION) {
+        try {
+            // Obtiene el archivo seleccionado
+            File file = archivo.getSelectedFile();
+            // Crea un FileInputStream para leer el archivo seleccionado
+            fis = new FileInputStream(file);
+            // Almacena la longitud del archivo seleccionado en bytes
+            this.longitudBytes = (int) file.length();
+            // Lee la imagen del archivo seleccionado
+            Image icono = ImageIO.read(file);
+            // Escala la imagen a las dimensiones del jLabel_foto
+            Image scaledIcono = icono.getScaledInstance(jLabel_foto.getWidth(), jLabel_foto.getHeight(), Image.SCALE_SMOOTH);
+            // Establece la imagen escalada como el ícono del jLabel_foto
+            jLabel_foto.setIcon(new ImageIcon(scaledIcono));
+            // Asigna la ruta del archivo a txt_ruta para referencia futura
+           
+        } catch (FileNotFoundException e) {
+            // Maneja la excepción si el archivo no se encuentra
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            // Maneja la excepción si ocurre un error de entrada/salida al leer el archivo
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
+    }
     }//GEN-LAST:event_jLabel_fotoMouseClicked
 
     /**
@@ -492,7 +499,6 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_password_visible;
     private javax.swing.JTextField txt_registrado_por;
-    private javax.swing.JTextField txt_ruta;
     private javax.swing.JTextField txt_telefono;
     private javax.swing.JTextField txt_tipo_nivel;
     private javax.swing.JTextField txt_usuario;

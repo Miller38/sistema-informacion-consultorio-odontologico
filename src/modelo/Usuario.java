@@ -1,4 +1,3 @@
-
 package modelo;
 
 /**
@@ -14,20 +13,16 @@ public class Usuario {
     private int idUsuario; // Identificador único del usuario
     private String nombre; // Nombre del usuario
     private String apellido; // Apellido del usuario
-    public String usuario; // Nombre de usuario para iniciar sesión
+    private String usuario; // Nombre de usuario para iniciar sesión
     private String password; // Contraseña del usuario
     private String telefono; // Número de teléfono del usuario
     private String email; // Email del usuario
-    private int imagen;
-    private String ruta;
-    private String registrado_por; 
+    private byte[] imagen; // Imagen del usuario
+    private String registrado_por; // Usuario que registró al usuario
     private int estado; // Estado del usuario (activo, inactivo, etc.)
     
-
-    
     // Constructor
-    public Usuario(){
-
+    public Usuario() {
         // Inicialización de atributos por defecto
         this.idUsuario = 0;
         this.nombre = "";
@@ -36,16 +31,12 @@ public class Usuario {
         this.password = "";
         this.telefono = "";
         this.email = "";
-        this.imagen = 0;
-        this.ruta = "";
+        this.imagen = null;
         this.registrado_por = "";
         this.estado = 0;
-        
     }
     
-    // setter and getter
-
-    // Métodos para acceder y modificar el identificador único del usuario
+    // Métodos getter y setter
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -54,7 +45,6 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-     // Métodos para acceder y modificar el nombre del usuario
     public String getNombre() {
         return nombre;
     }
@@ -63,7 +53,6 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-     // Métodos para acceder y modificar el apellido del usuario
     public String getApellido() {
         return apellido;
     }
@@ -72,7 +61,6 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-     // Métodos para acceder y modificar el nombre de usuario para iniciar sesión
     public String getUsuario() {
         return usuario;
     }
@@ -81,7 +69,6 @@ public class Usuario {
         this.usuario = usuario;
     }
 
-     // Métodos para acceder y modificar la contraseña del usuario
     public String getPassword() {
         return password;
     }
@@ -90,56 +77,38 @@ public class Usuario {
         this.password = password;
     }
 
-    // Métodos para acceder y modificar el número de teléfono del usuario
     public String getTelefono() {
         return telefono;
     }
-    
-    // Establece el número de teléfono del usuario
-public void setTelefono(String telefono) {
-    this.telefono = telefono;
-}
 
-// Devuelve el correo electrónico del usuario
-public String getEmail() {
-    return email;
-}
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
-// Establece el correo electrónico del usuario
-public void setEmail(String email) {
-    this.email = email;
-}
+    public String getEmail() {
+        return email;
+    }
 
-    public int getImagen() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public byte[] getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
 
-    public String getRuta() {
-        return ruta;
+    public String getRegistrado_por() {
+        return registrado_por;
     }
 
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
-    }
+    public void setRegistrado_por(String registrado_por) {
+        this.registrado_por = registrado_por;
+    }  
 
-
-
-// Devuelve el nombre del usuario que lo registró
-public String getRegistrado_por() {
-    return registrado_por;
-}
-
-// Establece el nombre del usuario que lo registró
-public void setRegistrado_por(String registrado_por) {
-    this.registrado_por = registrado_por;
-}  
-    
-
-    // Métodos para acceder y modificar el estado del usuario
     public int getEstado() {
         return estado;
     }
@@ -147,6 +116,4 @@ public void setRegistrado_por(String registrado_por) {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-    
-    
 }

@@ -8,7 +8,6 @@ import java.sql.PreparedStatement; // Importa la clase PreparedStatement de java
 import java.sql.SQLException; // Importa la clase SQLException de java.sql
 import javax.swing.JOptionPane; // Importa la clase JOptionPane de javax.swing
 import java.sql.ResultSet; // Importa la clase ResultSet de java.sql
-import java.util.regex.Pattern; // Importa la clase Pattern de java.util.regex
 import java.util.logging.Level; // Importa la clase Level de java.util.logging
 import java.util.logging.Logger; // Importa la clase Logger de java.util.logging
 import servicios.Utilidades;
@@ -28,50 +27,34 @@ public class Ctrl_Usuario {
     *                                                     Método para guardar un nuevo usuario.
     * ------------------------------------------------------------------------------------------------------------------------
      */
-    public boolean guardar(Usuario objeto) {
-        // Variable para almacenar la respuesta si el usuario se ha guardado con éxito o no.
+     public boolean guardar(Usuario objeto) {
         boolean respuesta = false;
-        // Obtiene una conexión a la base de datos.
         Connection cn = Conexion.conectar();
         try {
-
-            // Prepara la consulta SQL para insertar un nuevo usuario en la tabla 'usuarios'.
             PreparedStatement consulta = cn.prepareStatement("INSERT INTO usuarios "
-                    + "(idUsuario, usuario, password, nombre, apellido, telefono, email, registrado_por) VALUES (?,?,?,?,?,?,?,?)");
+                    + "(idUsuario, usuario, password, nombre, apellido, telefono, email, imagen, registrado_por) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?)");
 
-            // Establece los valores de los parámetros en la consulta SQL.
-            // El primer parámetro es un ID auto-generado, por lo que se establece como 0.
             consulta.setInt(1, 0);
-            // El segundo parámetro es el nombre de usuario.
             consulta.setString(2, objeto.getUsuario());
-            // El tercer parámetro es la contraseña del usuario.
             consulta.setString(3, objeto.getPassword());
-            // Establece el valor del cuarto parámetro de la consulta SQL con el nombre del objeto
             consulta.setString(4, objeto.getNombre());
-            // Establece el valor del quinto parámetro de la consulta SQL con el apellido del objeto
             consulta.setString(5, objeto.getApellido());
-            // Establece el valor del sexto parámetro de la consulta SQL con el teléfono del objeto
             consulta.setString(6, objeto.getTelefono());
-            // Establece el valor del séptimo parámetro de la consulta SQL con el email del objeto
             consulta.setString(7, objeto.getEmail());
+            consulta.setBytes(8, objeto.getImagen());
+            consulta.setString(9, objeto.getRegistrado_por());
             
-            // Establece el valor del octavo parámetro de la consulta SQL con el campo "registrado_por" del objeto
-            consulta.setString(8, objeto.getRegistrado_por());
-
-            // Ejecuta la consulta y verifica si se ha insertado al menos una fila.
             if (consulta.executeUpdate() > 0) {
-                // Si se ha insertado una fila, la respuesta es true.
                 respuesta = true;
             }
-            // Cierra la conexión con la base de datos
             cn.close();
         } catch (SQLException e) {
-            // En caso de una excepción SQL, imprime un mensaje de error con la información de la excepción
             System.out.println("Error al guardar el usuario " + e);
         }
-        // Devuelve la respuesta, que indica si la operación fue exitosa o no
         return respuesta;
     }
+
     
 /* ------------------------------------------------------------------------------------------------------------------------
 *                                     Método para consultar si el usuario ya existe en la BD .
@@ -116,7 +99,7 @@ public class Ctrl_Usuario {
         boolean respuesta = false; // Inicializa una variable booleana para indicar el resultado del inicio de sesión.
 
         // Encripta la contraseña proporcionada por el usuario
-    String passwordEncriptada = Utilidades.encriptarSHA1(objeto.getPassword());
+    String passwordEncriptada = Utilidades.encriptarSHA3(objeto.getPassword());
 
         
         // Conexión a la base de datos
@@ -154,7 +137,7 @@ public class Ctrl_Usuario {
         Connection cn = Conexion.conectar();
         try {
             // Encripta la contraseña antes de actualizarla
-        String passwordEncriptada = Utilidades.encriptarSHA1(objeto.getPassword());
+        String passwordEncriptada = Utilidades.encriptarSHA3(objeto.getPassword());
 
             // Prepara la consulta SQL para actualizar los datos del usuario
             PreparedStatement consulta = cn.prepareStatement("UPDATE usuarios SET  usuario=? , password=?,  nombre=?, apellido=?, telefono=?, email=? WHERE idUsuario = '" + idUsuario + "'");

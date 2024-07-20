@@ -446,7 +446,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         // Crea un modelo de tabla por defecto
         DefaultTableModel model = new DefaultTableModel();
         // Consulta SQL para obtener todos los usuarios
-        String sql = "SELECT idUsuario, usuario, nombre, apellido, telefono, email, password FROM usuarios";
+        String sql = "SELECT idUsuario, usuario, nombre, apellido, telefono, email, password, registrado_por FROM usuarios";
         Statement st;
 
         try {
@@ -473,6 +473,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
             // Agrega una columna con el encabezado "email" al modelo de la tabla
             model.addColumn("email");
             // Agrega una columna con el encabezado "password" al modelo de la tabla
+            //model.addColumn("password");
             model.addColumn("password");
 
             // Recorre los resultados de la consulta
