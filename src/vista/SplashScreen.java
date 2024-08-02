@@ -167,48 +167,53 @@ public class SplashScreen extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        SplashScreen sp = new SplashScreen();
-        sp.setVisible(true);
+            // Crea una instancia de la pantalla de inicio (splash screen) y la hace visible
+SplashScreen sp = new SplashScreen();
+sp.setVisible(true);
+
+try {
+    // Inicia un bucle que simula el progreso de carga de la aplicación
+    for(int i = 0; i <= 100; i++){
+        // Pausa la ejecución del hilo actual durante 100 milisegundos
+        Thread.sleep(100);
         
+        // Actualiza el texto del componente que muestra el porcentaje de carga
+        sp.LoadingValue.setText(i + " %");
         
-        try {
-            
-            for(int i = 0; i<= 100; i++){
-                Thread.sleep(100);
-                sp.LoadingValue.setText(i  + " %");
-                
-                if(i == 10){
-                    sp.LoadingLabel.setText("Turning On Modules . . .");
-                }
-                 if(i == 20){
-                    sp.LoadingLabel.setText("Loading On Modules . . .");
-                }
-                  if(i == 50){
-                    sp.LoadingLabel.setText("Connecting to Database . . .");
-                }
-                   if(i == 70){
-                    sp.LoadingLabel.setText("Connecting Successful . . .");
-                }
-                    if(i == 80){
-                    sp.LoadingLabel.setText("Launching Application . . .");
-                }
-                   sp.LoadingBar.setValue(i);
-                   
-            }            
-           
-             FrmLogin login = new FrmLogin();
-             login.setBounds(0,0,700,500);
-             login.setVisible(true);
-             login.setResizable(false);
-             login.setLocationRelativeTo(null);
-             sp.setVisible(false);
-            
-                  
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        // Cambia el texto del componente de carga en función del progreso
+        if(i == 10){
+            sp.LoadingLabel.setText("Turning On Modules . . .");
+        }
+        if(i == 20){
+            sp.LoadingLabel.setText("Loading Modules . . .");
+        }
+        if(i == 50){
+            sp.LoadingLabel.setText("Connecting to Database . . .");
+        }
+        if(i == 70){
+            sp.LoadingLabel.setText("Connecting Successful . . .");
+        }
+        if(i == 80){
+            sp.LoadingLabel.setText("Launching Application . . .");
         }
         
-         
+        // Actualiza el valor de la barra de carga con el progreso actual
+        sp.LoadingBar.setValue(i);
+    }
+
+    // Crea una instancia del formulario de inicio de sesión y lo muestra
+    FrmLogin login = new FrmLogin();
+    login.setBounds(0, 0, 700, 500); // Establece el tamaño y la posición del formulario
+    login.setVisible(true); // Hace visible el formulario de inicio de sesión
+    login.setResizable(false); // Impide que el formulario sea redimensionable
+    login.setLocationRelativeTo(null); // Centra el formulario en la pantalla
+    sp.setVisible(false); // Oculta la pantalla de inicio después de cargar
+
+} catch (Exception e) {
+    // Muestra un mensaje de error en caso de una excepción durante el proceso de carga
+    JOptionPane.showMessageDialog(null, e);
+}
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

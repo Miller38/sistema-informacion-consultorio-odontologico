@@ -170,32 +170,45 @@ public class Ctrl_Usuario {
  * ------------------------------------------------------------------------------------------------------------------------
      */
 // Método para eliminar un usuario de la base de datos
-    public boolean eliminar(int idUsuario) {
-        // Inicializa la variable de respuesta como falsa
-        boolean respuesta = false;
-        // Establece la conexión con la base de datos
-        Connection cn = Conexion.conectar();
+  // Método para eliminar un usuario de la base de datos
+public boolean eliminar(int idUsuario) {
+    // Inicializa la variable de respuesta como falsa
+    boolean respuesta = false;
+    // Establece la conexión con la base de datos
+    
+    Connection cn = Conexion.conectar();
+    try {
+        // Conecta con la base de datos
+        
+        
+        // Prepara la consulta SQL para eliminar el usuario
+        String sql = "DELETE FROM usuarios WHERE idUsuario = ?";
+       PreparedStatement consulta = cn.prepareStatement(sql);
+        // Asigna el valor del parámetro
+        consulta.setInt(1, idUsuario);
 
-        try {
-            // Prepara la consulta SQL para eliminar el usuario
-            PreparedStatement consulta = cn.prepareStatement(
-                    "DELETE  FROM usuarios WHERE idUsuario = '" + idUsuario + "' ");
-            // Ejecuta la consulta SQL de eliminación
-            consulta.executeUpdate();
+        // Ejecuta la consulta SQL de eliminación y obtiene el número de filas afectadas
+        int filasAfectadas = consulta.executeUpdate();
 
-            // Si se realizó una eliminación exitosa, actualiza la respuesta a verdadera
-            if (consulta.executeUpdate() > 0) {
-                respuesta = true;
-            }
-            // Cierra la conexión con la base de datos
-            cn.close();
-        } catch (SQLException e) {
-            // En caso de una excepción SQL, imprime un mensaje de error con la información de la excepción
-            System.out.println("Error al eliminar el usuario: " + e);
+        // Si se realizó una eliminación exitosa, actualiza la respuesta a verdadera
+        if (filasAfectadas > 0) {
+            respuesta = true;
         }
-        // Devuelve la respuesta, que indica si la operación fue exitosa o no
-        return respuesta;
+    } catch (SQLException e) {
+        // En caso de una excepción SQL, imprime un mensaje de error con la información de la excepción
+        System.out.println("Error al eliminar el usuario: " + e.getMessage());
+    } finally {
+        // Cierra los recursos en el bloque finally para asegurar su cierre
+        try {
+            if (cn != null) cn.close();
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar los recursos: " + e.getMessage());
+        }
     }
+    // Devuelve la respuesta, que indica si la operación fue exitosa o no
+    return respuesta;
+}
+
     
      /*
  * ------------------------------------------------------------------------------------------------------------------------

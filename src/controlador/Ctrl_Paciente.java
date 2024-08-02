@@ -6,6 +6,11 @@ import conexion.Conexion;  // Importa la clase Conexion del paquete conexion
 import modelo.Paciente;   // Importa la clase Paciente del paquete modelo
 import java.sql.SQLException; // Importa la clase SQLException de java.sql para manejar excepciones SQL
 import java.sql.PreparedStatement; // Importa la clase PreparedStatement de java.sql para preparar sentencias SQL
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.Usuario;
+import servicios.Utilidades;
 
 /**
  * 
@@ -29,7 +34,7 @@ public class Ctrl_Paciente {
 
         try {
             // Prepara la sentencia SQL para insertar un nuevo paciente
-            PreparedStatement consulta = cn.prepareStatement("INSERT INTO paciente VALUES (?,?,?,?,?,?)");
+            PreparedStatement consulta = cn.prepareStatement("INSERT INTO paciente VALUES (?,?,?,?,?,?,?,?,?)");
             // Asigna valores a los parámetros de la consulta
             consulta.setInt(1, 0); // El primer parámetro es el ID, que es autogenerado (asumido)
             consulta.setString(2, objeto.getNombre());
@@ -85,4 +90,48 @@ public class Ctrl_Paciente {
         // Retorna la respuesta indicando si el paciente existe o no
         return respuesta;
     }
+    
+      /**
+     * ------------------------------------------------------------------------------------------------------------------------
+     *                                                                  Método para obtener un paciente
+     * ------------------------------------------------------------------------------------------------------------------------
+     */
+      // Método para obtener un paciente por identificación
+    public Paciente obtenerPaciente(String identificacion) {
+        Paciente paciente = null;
+        Connection cn = Conexion.conectar();
+        String sql = "SELECT * FROM pacientes WHERE identificacion_paciente = ?";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1, identificacion);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                paciente = new Paciente();
+                paciente.setIdPaciente(rs.getInt("idPaciente"));
+                paciente.setIdUsuario(rs.getInt("idUsuario"));
+                paciente.setIdAuxiliar(rs.getInt("idAuxiliar"));
+                paciente.setIdOdontologo(rs.getInt("idOdontologo"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setIdentificacion(rs.getString("identificacion_paciente"));
+                paciente.setFechaNacimiento(rs.getDate("fecha_Nacimiento_paciente"));
+                paciente.setDireccion(rs.getString("direccion_paciente"));
+                paciente.setTelefono(rs.getString("telefono_paciente"));
+                paciente.setCiudad(rs.getString("ciudad_paciente"));
+                paciente.setEmail(rs.getString("email_paciente"));
+            }
+
+            rs.close();
+            pst.close();
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener el paciente: " + e.getMessage());
+        }
+        return paciente;
+    }
+
+    
 }

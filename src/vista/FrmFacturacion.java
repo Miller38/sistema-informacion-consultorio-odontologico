@@ -34,7 +34,7 @@ public class FrmFacturacion extends javax.swing.JFrame {
         //setUndecorated(true);
         initComponents();
 
-        this.setSize(700, 600);
+        this.setSize(700, 633);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setTitle("Facturacion");
@@ -133,6 +133,7 @@ public class FrmFacturacion extends javax.swing.JFrame {
         txt_cambio = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         Btn_registrar_venta = new javax.swing.JButton();
+        Btn_regresar = new javax.swing.JButton();
         jLabel_cabecera = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
@@ -289,9 +290,20 @@ public class FrmFacturacion extends javax.swing.JFrame {
         Btn_registrar_venta.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(Btn_registrar_venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 150, 110));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 640, 200));
+        Btn_regresar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/atras.png"))); // NOI18N
+        Btn_regresar.setText("Regresar");
+        Btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_regresarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 150, 40));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 640, 240));
         getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 70));
-        getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 600));
+        getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -330,6 +342,17 @@ public class FrmFacturacion extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_Btn_buscar_pacienteActionPerformed
+
+    private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
+        // Hace que la ventana actual se vuelva invisible.
+        this.setVisible(false);
+        // Libera los recursos asociados con la ventana actual y la cierra.
+        this.dispose();   
+        Menu menu =new Menu();
+        menu.setVisible(true);
+      
+       
+    }//GEN-LAST:event_Btn_regresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,6 +393,7 @@ public class FrmFacturacion extends javax.swing.JFrame {
     private javax.swing.JButton Btn_añadir_servicio;
     private javax.swing.JButton Btn_buscar_paciente;
     private javax.swing.JButton Btn_registrar_venta;
+    private javax.swing.JButton Btn_regresar;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox_paciente;
     private javax.swing.JComboBox<String> jComboBox_servicio;

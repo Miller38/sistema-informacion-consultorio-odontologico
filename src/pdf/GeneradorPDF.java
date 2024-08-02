@@ -58,11 +58,12 @@ public class GeneradorPDF {
         PdfPTable tabla = new PdfPTable(7); // Crea una tabla con 7 columnas.
         tabla.addCell("ID"); // Agrega una celda con el encabezado "ID".
         tabla.addCell("Usuario"); // Agrega una celda con el encabezado "Usuario".
+         tabla.addCell("password");
         tabla.addCell("Nombre"); // Agrega una celda con el encabezado "Nombre".
         tabla.addCell("Apellido"); // Agrega una celda con el encabezado "Apellido".
         tabla.addCell("Telefono"); // Agrega una celda con el encabezado "Telefono".
         tabla.addCell("Email"); // Agrega una celda con el encabezado "Email".
-         tabla.addCell("password");
+        
         try {
             Connection con = Conexion.conectar(); // Establece una conexión con la base de datos.
             PreparedStatement pst = con.prepareStatement("SELECT * FROM usuarios"); 

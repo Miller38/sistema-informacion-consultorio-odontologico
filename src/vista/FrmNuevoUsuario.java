@@ -306,12 +306,14 @@ public class FrmNuevoUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
-        // Crea una nueva instancia de la clase Menu.
+        // Hace que la ventana actual se vuelva invisible.
+        this.setVisible(false);
+        // Libera los recursos asociados con la ventana actual y la cierra.
+        this.dispose();
+
+        // Crea y muestra la ventana de Menu
         Menu menu = new Menu();
-        // Establece la visibilidad de la ventana Menu como verdadera para que sea visible para el usuario.
         menu.setVisible(true);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        dispose();
 
     }//GEN-LAST:event_Btn_regresarActionPerformed
 

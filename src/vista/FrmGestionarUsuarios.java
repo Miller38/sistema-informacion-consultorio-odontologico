@@ -146,6 +146,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         txt_password = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         Btn_reporte_pdf = new javax.swing.JButton();
+        Btn_regresar = new javax.swing.JButton();
         jLabel_cabecera = new javax.swing.JLabel();
         jLabel_Wallpaper = new javax.swing.JLabel();
 
@@ -187,6 +188,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
         Btn_actualizar.setBackground(new java.awt.Color(153, 255, 153));
         Btn_actualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
         Btn_actualizar.setText("Actualizar");
         Btn_actualizar.setToolTipText("Click para actualizar la informacion de un usuario");
         Btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -194,10 +196,11 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
                 Btn_actualizarActionPerformed(evt);
             }
         });
-        jPanel3.add(Btn_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 17, 120, 30));
+        jPanel3.add(Btn_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 140, 40));
 
         Btn_eliminar.setBackground(new java.awt.Color(255, 102, 102));
         Btn_eliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Cancel.png"))); // NOI18N
         Btn_eliminar.setText("Eliminar");
         Btn_eliminar.setToolTipText("Click para eliminar un usuario");
         Btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -205,41 +208,41 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
                 Btn_eliminarActionPerformed(evt);
             }
         });
-        jPanel3.add(Btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 57, 120, 30));
+        jPanel3.add(Btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 140, 40));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Usuario");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 70, -1));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 60, -1));
 
         txt_usuario.setBackground(new java.awt.Color(255, 255, 255));
         txt_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_usuario.setForeground(new java.awt.Color(51, 51, 51));
         txt_usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_usuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 190, -1));
+        jPanel3.add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 160, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Nombre");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 20));
 
         txt_nombre.setBackground(new java.awt.Color(255, 255, 255));
         txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_nombre.setForeground(new java.awt.Color(51, 51, 51));
         txt_nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_nombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 190, -1));
+        jPanel3.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 160, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Apellido");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Telefono");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         txt_apellido.setBackground(new java.awt.Color(255, 255, 255));
         txt_apellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -251,39 +254,40 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
                 txt_apellidoActionPerformed(evt);
             }
         });
-        jPanel3.add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 160, -1));
+        jPanel3.add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 160, -1));
 
         txt_telefono.setBackground(new java.awt.Color(255, 255, 255));
         txt_telefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_telefono.setForeground(new java.awt.Color(51, 51, 51));
         txt_telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_telefono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 190, -1));
+        jPanel3.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 160, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Email");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
         txt_email.setBackground(new java.awt.Color(255, 255, 255));
         txt_email.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_email.setForeground(new java.awt.Color(51, 51, 51));
         txt_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_email.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 160, -1));
+        jPanel3.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 160, -1));
 
         txt_password.setBackground(new java.awt.Color(255, 255, 255));
         txt_password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_password.setForeground(new java.awt.Color(51, 51, 51));
         txt_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_password.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 160, -1));
+        jPanel3.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 160, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Password");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 70, -1));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 70, 20));
 
+        Btn_reporte_pdf.setBackground(new java.awt.Color(255, 255, 255));
         Btn_reporte_pdf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Btn_reporte_pdf.setText("Reporte PDF");
         Btn_reporte_pdf.setToolTipText("Click para imprimir un reporte PDF");
@@ -292,7 +296,18 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
                 Btn_reporte_pdfActionPerformed(evt);
             }
         });
-        jPanel3.add(Btn_reporte_pdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 120, -1));
+        jPanel3.add(Btn_reporte_pdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 140, 40));
+
+        Btn_regresar.setBackground(new java.awt.Color(255, 255, 255));
+        Btn_regresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/atras.png"))); // NOI18N
+        Btn_regresar.setText("Regresar");
+        Btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_regresarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(Btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, 40));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 740, 160));
         getContentPane().add(jLabel_cabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 50));
@@ -312,8 +327,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
                 && txt_apellido.getText().isEmpty() && txt_telefono.getText().isEmpty() && txt_email.getText().isEmpty()) {
 
             // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
-            JOptionPane.showMessageDialog(null, "Debes completar todos los campos", "Warning !",
-                    JOptionPane.PLAIN_MESSAGE, getIcon("/img/warning.png", 40, 40));
+              JOptionPane.showMessageDialog(this, "Debes completar todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
             // Crea una instancia de la clase Usuario
             Usuario usuario = new Usuario();
@@ -330,8 +344,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
             if (controlUsuario.actualizar(usuario, idUsuario)) {
                 // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
-                JOptionPane.showMessageDialog(null, "Datos del usuario actualizados", "Warning !",
-                        JOptionPane.PLAIN_MESSAGE, getIcon("/img/warning.png", 40, 40));
+                  JOptionPane.showMessageDialog(this, "Datos del usuario actualizados.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 // Llama al método CargarTablaUsuarios para cargar los datos de los usuarios en la tabla
                 this.CargarTablaUsuarios();
                 // Llama al método Limpiar para limpiar los campos de entrada de datos en la interfaz
@@ -339,8 +352,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
             } else {
                 // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
-                JOptionPane.showMessageDialog(null, "Error al actualizar", "Warning !",
-                        JOptionPane.PLAIN_MESSAGE, getIcon("/img/warning.png", 40, 40));
+                  JOptionPane.showMessageDialog(this, "Error al actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         }
     }//GEN-LAST:event_Btn_actualizarActionPerformed
@@ -349,34 +361,52 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
 
         Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
 
-        if (idUsuario == 0) {
+if (idUsuario == 0) {
+    // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
+    JOptionPane.showMessageDialog(this, "Debes seleccionar un usuario.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+} else {
+    // Muestra un cuadro de diálogo de confirmación de JOptionPane
+    int confirm = JOptionPane.showConfirmDialog(this, "¿Seguro desea eliminar este usuario?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    
+    if (confirm == JOptionPane.YES_OPTION) {
+        // Si el usuario confirma la eliminación
+        boolean eliminado = controlUsuario.eliminar(idUsuario);
+        
+        if (eliminado) {
             // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un usuario", "Warning !",
-                    JOptionPane.PLAIN_MESSAGE, getIcon("/img/warning.png", 40, 40));
+            JOptionPane.showMessageDialog(this, "Usuario eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Llama al método CargarTablaUsuarios para actualizar la información de los usuarios en la tabla
+            this.CargarTablaUsuarios();
+            // Llama al método Limpiar para limpiar los campos de entrada de datos en la interfaz
+            this.Limpiar();
         } else {
-            if (!controlUsuario.eliminar(idUsuario)) {
-                // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
-                JOptionPane.showMessageDialog(null, "Usuario eliminado con exito", "Warning !",
-                        JOptionPane.PLAIN_MESSAGE, getIcon("/img/warning.png", 40, 40));
-
-                // Llama al método CargarTablaUsuarios para cargar los datos de los usuarios en la tabla
-                this.CargarTablaUsuarios();
-                // Llama al método Limpiar para limpiar los campos de entrada de datos en la interfaz
-                this.Limpiar();
-
-            } else {
-                // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
-                JOptionPane.showMessageDialog(null, "Error al eliminar usuario.", "Warning !",
-                        JOptionPane.PLAIN_MESSAGE, getIcon("/img/warning.png", 40, 40));
-                this.Limpiar();
-            }
+            // Muestra un cuadro de diálogo de JOptionPane con un mensaje personalizado, título y un ícono
+            JOptionPane.showMessageDialog(this, "Error al eliminar usuario.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    } else {
+        // Si el usuario elige "No", no se realiza ninguna acción adicional
+        JOptionPane.showMessageDialog(this, "Eliminación cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
+    }
+}
+
     }//GEN-LAST:event_Btn_eliminarActionPerformed
 
     private void Btn_reporte_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_reporte_pdfActionPerformed
         GeneradorPDF generadorPdf = new GeneradorPDF();
         generadorPdf.generarReporteUsuarios();
     }//GEN-LAST:event_Btn_reporte_pdfActionPerformed
+
+    private void Btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_regresarActionPerformed
+         // Hace que la ventana actual se vuelva invisible.
+        this.setVisible(false);
+        // Libera los recursos asociados con la ventana actual y la cierra.
+        this.dispose();
+        
+        FrmNuevoUsuario frmNuevoUsuario = new FrmNuevoUsuario();
+        frmNuevoUsuario.setVisible(true);
+        
+    }//GEN-LAST:event_Btn_regresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,6 +446,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_actualizar;
     private javax.swing.JButton Btn_eliminar;
+    private javax.swing.JButton Btn_regresar;
     private javax.swing.JButton Btn_reporte_pdf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -438,7 +469,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 
-    // -------------------------------- Metodo para mostrar todos los usuarios -----------------------------------------// 
+// -------------------------------- Metodo para mostrar todos los usuarios -----------------------------------------// 
 // Método para cargar la tabla de usuarios
     private void CargarTablaUsuarios() {
         // Establece la conexión a la base de datos
@@ -446,7 +477,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         // Crea un modelo de tabla por defecto
         DefaultTableModel model = new DefaultTableModel();
         // Consulta SQL para obtener todos los usuarios
-        String sql = "SELECT idUsuario, usuario, nombre, apellido, telefono, email, password, registrado_por FROM usuarios";
+        String sql = "SELECT idUsuario, usuario, password, nombre, apellido, telefono, email, registrado_por FROM usuarios";
         Statement st;
 
         try {
@@ -464,6 +495,7 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
             model.addColumn("idUsuario");
             // Agrega una columna con el encabezado "usuario" al modelo de la tabla
             model.addColumn("usuario");
+             model.addColumn("password");
             // Agrega una columna con el encabezado "nombre" al modelo de la tabla
             model.addColumn("nombre");
             // Agrega una columna con el encabezado "apellido" al modelo de la tabla
@@ -472,10 +504,8 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
             model.addColumn("telefono");
             // Agrega una columna con el encabezado "email" al modelo de la tabla
             model.addColumn("email");
-            // Agrega una columna con el encabezado "password" al modelo de la tabla
-            //model.addColumn("password");
-            model.addColumn("password");
-
+            // Agrega una columna con el encabezado "password" al modelo de la tabla           
+           
             // Recorre los resultados de la consulta
             while (rs.next()) {
                 // Crea un array de objetos para almacenar una fila
@@ -550,19 +580,14 @@ public class FrmGestionarUsuarios extends javax.swing.JFrame {
         }
     }
 
-    // ------------------------------ Metodo para agregar iconos a los JOptionPane  -----------------------------//
-    // Método para obtener un icono redimensionado desde una ruta especificada
-    private Icon getIcon(String path, int w, int h) {
-        // Carga la imagen desde la ruta especificada, la redimensiona y la devuelve como un Icono
-        return new ImageIcon(new ImageIcon(getClass().getResource(path))
-                .getImage().getScaledInstance(w, h, 0));
-    }
-
     // -----------------------------------  Metodo para limpiar los campos  ----------------------------------------//
     private void Limpiar() {
         // Limpia el campo de texto para el usuario, estableciéndolo como una cadena vacía.
         txt_usuario.setText("");
-        // Limpia el campo de texto para la contraseña, estableciéndolo como una cadena vacía.
+        txt_nombre.setText("");
+        txt_apellido.setText("");
+        txt_telefono.setText("");
+        txt_email.setText("");
         txt_password.setText("");
     }
     

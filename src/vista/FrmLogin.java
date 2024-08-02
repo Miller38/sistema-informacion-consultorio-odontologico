@@ -1,12 +1,21 @@
 package vista;
 
-
+// Importa la clase Ctrl_Usuario del paquete controlador
 import controlador.Ctrl_Usuario;
+// Importa la clase Image del paquete java.awt para trabajar con imágenes en la interfaz gráfica
 import java.awt.Image;
+import java.awt.geom.RoundRectangle2D;
+// Importa la interfaz Icon del paquete javax.swing para representar iconos en componentes Swing
 import javax.swing.Icon;
+// Importa la clase ImageIcon del paquete javax.swing para crear iconos a partir de imágenes
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+// Importa la clase JOptionPane del paquete javax.swing para mostrar cuadros de diálogo estándar
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+// Importa la clase Usuario del paquete modelo
 import modelo.Usuario;
+// Importa la clase TextPrompt del paquete servicios (asumo que esta clase proporciona funcionalidad para mostrar texto de sugerencia en campos de texto)
 import servicios.TextPrompt;
 
 /**
@@ -14,27 +23,27 @@ import servicios.TextPrompt;
  * @author Milliany Tech
  * @version: 0.1
  * @Date 2 enero - 2024
- * @Name Sistema de informacion 
- * 
+ * @Name Sistema de informacion
+ *
  */
 public class FrmLogin extends javax.swing.JFrame {
-    
 
     public FrmLogin() {
         this.setUndecorated(true);
         initComponents();
-        
+
         // metodo para el placeholder en los txt        
-        TextPrompt usuario = new TextPrompt("   Ingrese su username." ,txt_usuario);
-        TextPrompt contrasena = new TextPrompt("   Ingrese su password." ,txt_password);
-        
-       
-         txt_password.setVisible(true);
+        TextPrompt usuario = new TextPrompt("   Ingrese su username.", txt_usuario);
+        TextPrompt contrasena = new TextPrompt("   Ingrese su password.", txt_password);
+
+        // Hace visible el campo de texto para la contraseña oculta
+        txt_password.setVisible(true);
+        // Hace invisible el campo de texto para la contraseña visible
         txt_password_visible.setVisible(false);
-       
+
         
-        // Cierra todos los procesos en segundo plano cuando se cierra esta ventana
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // cierra todos los procesos en segundo plano cuando se cierra lainterfaz
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  
         this.setLayout(null);
         // No permite que el jFrame sea modificado por usuario
         this.setResizable(false);
@@ -46,18 +55,20 @@ public class FrmLogin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         // Medidas del jFrame
         this.setSize(700, 500);
-        // Permite que el jFrame aparezca en el centro
-       // this.setLocationRelativeTo(null);
-       
-       /*
+
+           // Redondear las esquinas del jframe 
+        setShape(new RoundRectangle2D.Double(0,0,getWidth(), getHeight(), 20,20));
+        
+
+        /*
     * ------------------------------------------------------------------------------------------------------------------------
     *                                                            Colocar imagen de fondo
     * ------------------------------------------------------------------------------------------------------------------------
-     */
+         */
         // Crea un objeto ImageIcon con la imagen ubicada en el directorio especificado
         ImageIcon wallpaper = new ImageIcon("src/img/bg-gradiente.jpg");
-       // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
-       // Obtiene la imagen del ImageIcon
+        // Escala la imagen a las dimensiones actuales del jLabel_Wallpaper
+        // Obtiene la imagen del ImageIcon
         Icon icono = new ImageIcon(
                 wallpaper.getImage().getScaledInstance( // Escala la imagen
                         jLabel_Wallpaper.getWidth(), // Ancho actual del jLabel_Wallpaper
@@ -67,9 +78,9 @@ public class FrmLogin extends javax.swing.JFrame {
         );
         // Establece el nuevo icono (imagen escalada) en el jLabel_Wallpaper
         jLabel_Wallpaper.setIcon(icono);
-       // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
+        // Vuelve a pintar el contenedor para asegurarse de que la imagen se renderice correctamente
         this.repaint();
-       
+
     }
 
     @SuppressWarnings("unchecked")
@@ -93,6 +104,7 @@ public class FrmLogin extends javax.swing.JFrame {
         Btn_cerrarLogin = new javax.swing.JButton();
         jCheckBox_ver_clave = new javax.swing.JCheckBox();
         txt_password_visible = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -163,13 +175,14 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 160, 2));
 
         Btn_cerrarLogin.setBackground(new java.awt.Color(51, 153, 255));
+        Btn_cerrarLogin.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         Btn_cerrarLogin.setText("X");
         Btn_cerrarLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_cerrarLoginActionPerformed(evt);
             }
         });
-        jPanel2.add(Btn_cerrarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        jPanel2.add(Btn_cerrarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, 30));
 
         jCheckBox_ver_clave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +197,16 @@ public class FrmLogin extends javax.swing.JFrame {
         txt_password_visible.setBorder(null);
         jPanel2.add(txt_password_visible, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 150, 30));
 
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("-");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 10, 40, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 350, 500));
 
         pack();
@@ -194,27 +217,41 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_IniciarSesionActionPerformed
 
     private void Btn_cerrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cerrarLoginActionPerformed
-          System.exit(0);
+        // Termina la ejecución de la aplicación y cierra todos los procesos asociados
+    // El código de salida 0 indica que la aplicación se cerró correctamente sin errores
+    System.exit(0);
     }//GEN-LAST:event_Btn_cerrarLoginActionPerformed
 
     private void jCheckBox_ver_claveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_ver_claveActionPerformed
-                
-        if (jCheckBox_ver_clave.isSelected() == true) {
-            String pass = "";
-            char[] passIngresado = txt_password.getPassword();
-            for (int i = 0; i < passIngresado.length; i++) {
-                pass += passIngresado[i];
-            }
-            txt_password_visible.setText(pass);
-            txt_password.setVisible(false);
-            txt_password_visible.setVisible(true);
-        } else {
-            String passwordIngresado = txt_password_visible.getText().trim();
-            txt_password.setText(passwordIngresado);
-            txt_password.setVisible(true);
-            txt_password_visible.setVisible(false);
-        }
+
+       // Verifica si el checkbox para mostrar la contraseña está seleccionado
+    if (jCheckBox_ver_clave.isSelected()) {
+        // Si el checkbox está seleccionado, se debe mostrar la contraseña en formato de texto
+        // Obtiene la contraseña ingresada en el campo de contraseña (oculto) como un arreglo de caracteres
+        String pass = new String(txt_password.getPassword());
+        // Establece la contraseña obtenida en el campo de texto visible para mostrarla
+        txt_password_visible.setText(pass);
+        // Oculta el campo de contraseña (oculto) ya que ahora se mostrará el campo de texto visible
+        txt_password.setVisible(false);
+        // Muestra el campo de texto visible que contiene la contraseña en formato de texto
+        txt_password_visible.setVisible(true);
+    } else {
+        // Si el checkbox no está seleccionado, se debe ocultar la contraseña en formato de texto
+        // Obtiene la contraseña ingresada en el campo de texto visible (que es la contraseña en formato de texto)
+        String passwordIngresado = txt_password_visible.getText().trim();
+        // Establece la contraseña obtenida en el campo de contraseña (oculto) para que se oculte nuevamente
+        txt_password.setText(passwordIngresado);
+        // Muestra el campo de contraseña (oculto) para que la contraseña sea visible solo en formato oculto
+        txt_password.setVisible(true);
+        // Oculta el campo de texto visible que contiene la contraseña en formato de texto
+        txt_password_visible.setVisible(false);
+    }
+
     }//GEN-LAST:event_jCheckBox_ver_claveActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,6 +291,7 @@ public class FrmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_cerrarLogin;
     private javax.swing.JButton btn_IniciarSesion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox_ver_clave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -271,61 +309,60 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 
-   
-     /*
+    /*
     * ------------------------------------------------------------------------------------------------------------------------
     *                                                            Metodo para loguearse
     * ------------------------------------------------------------------------------------------------------------------------
      */
-    private void login() {     
-        
-         // Método para manejar el proceso de inicio de sesión
-    if (!txt_usuario.getText().isEmpty() && !txt_password.getText().isEmpty()) {
-        // Verifica que los campos de usuario y contraseña no estén vacíos
-        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-        // Crea una instancia del controlador de usuario
-        Usuario usuario = new Usuario();
-        // Crea una instancia de un objeto Usuario
-        usuario.setUsuario(txt_usuario.getText().trim());
-        // Asigna el texto del campo de usuario al objeto usuario, eliminando espacios en blanco
-        usuario.setPassword(txt_password.getText().trim());
-        // Asigna el texto del campo de contraseña al objeto usuario, eliminando espacios en blanco
-        if (controlUsuario.loginUser(usuario)) {
-            // Verifica si el usuario es válido según el controlador
+    private void login() {
 
-            //JOptionPane.showMessageDialog(null, "Login correcto");
-            // Muestra un mensaje de confirmación de inicio de sesión correcto (comentado)
-            Menu menu = new Menu();
-            // Crea una instancia del menú principal
-            menu.setBounds(0, 0, 1000, 600);
-            // Establece el tamaño y posición del menú
-            menu.setVisible(true);
-            // Muestra el menú
-            menu.setResizable(false);
-            // Deshabilita el redimensionamiento del menú
-            menu.setLocationRelativeTo(null);
-            // Centra el menú en la pantalla
-              this.setVisible(false);
-            // Oculta la ventana de inicio de sesión
-            dispose();
-            // Libera los recursos de la ventana de inicio de sesión
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al iniciar sesion.");
-            // Aquí puedes agregar código para manejar el error, como mostrar un mensaje de error
+        // Método para manejar el proceso de inicio de sesión
+        if (!txt_usuario.getText().isEmpty() && !txt_password.getText().isEmpty()) {
+            // Verifica que los campos de usuario y contraseña no estén vacíos
+            Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+            // Crea una instancia del controlador de usuario
+            Usuario usuario = new Usuario();
+            // Crea una instancia de un objeto Usuario
+            usuario.setUsuario(txt_usuario.getText().trim());
+            // Asigna el texto del campo de usuario al objeto usuario, eliminando espacios en blanco
+            usuario.setPassword(txt_password.getText().trim());
+            // Asigna el texto del campo de contraseña al objeto usuario, eliminando espacios en blanco
+            if (controlUsuario.loginUser(usuario)) {
+                // Verifica si el usuario es válido según el controlador
+
+                //JOptionPane.showMessageDialog(null, "Login correcto");
+                // Muestra un mensaje de confirmación de inicio de sesión correcto (comentado)
+                Menu menu = new Menu();
+                // Crea una instancia del menú principal
+                menu.setBounds(0, 0, 1000, 600);
+                // Establece el tamaño y posición del menú
+                menu.setVisible(true);
+                // Muestra el menú
+                menu.setResizable(false);
+                // Deshabilita el redimensionamiento del menú
+                menu.setLocationRelativeTo(null);
+                // Centra el menú en la pantalla
+                this.setVisible(false);
+                // Oculta la ventana de inicio de sesión
+                dispose();
+                // Libera los recursos de la ventana de inicio de sesión
+            } else {                
+                 JOptionPane.showMessageDialog(this, "Error al iniciar sesion.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {           
+             JOptionPane.showMessageDialog(this, "Debes completar todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-        } else {                  
-            JOptionPane.showMessageDialog(null,"Debes completar todos los campos.");
-        } 
         // Metodo para limpiar los campos despues del mensaje de advertencia
-          Limpiar();
+        Limpiar();
 
     }
+
     /*
     * ------------------------------------------------------------------------------------------------------------------------
     *                                                     Metodo para limpiar los campos
     * ------------------------------------------------------------------------------------------------------------------------
      */
-     private void Limpiar() {
+    private void Limpiar() {
         // Limpia el campo de texto para el usuario, estableciéndolo como una cadena vacía.
         txt_usuario.setText("");
         // Limpia el campo de texto para la contraseña, estableciéndolo como una cadena vacía.
